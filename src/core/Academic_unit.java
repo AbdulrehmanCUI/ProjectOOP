@@ -17,5 +17,11 @@ public class Academic_unit extends Campus_entity {
         this.name = name;
 
     }
-
     }
+    class mar{
+    String name;
+    mar(String name){
+        this.name = name;
+    }
+    }
+
