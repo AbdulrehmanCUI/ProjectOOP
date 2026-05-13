@@ -9,4 +9,13 @@ public class Academic_unit extends Campus_entity {
             System.out.println("based on number of students and equipment");
 // number of student x cost of equipments
         }
+
+    }
+    class abd{
+    String name;
+    abd (String name ){
+        this.name = name;
+
+    }
+
     }
