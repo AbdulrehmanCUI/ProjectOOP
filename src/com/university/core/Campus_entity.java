@@ -1,4 +1,4 @@
-package core;
+package com.university.core;
 
 abstract class Campus_entity{
     protected int entityID ;
