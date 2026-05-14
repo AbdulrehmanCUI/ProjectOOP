@@ -5,6 +5,16 @@ public class Lab {
     private int totalComputers;
     private String supervisor;
 
+    public Lab() {
+    }
+
+    public Lab(String labName, int totalComputers, String supervisor) {
+        this.labName = labName;
+        this.totalComputers = totalComputers;
+        this.supervisor = supervisor;
+    }
+
+
     public String getLabName() {
         return labName;
     }

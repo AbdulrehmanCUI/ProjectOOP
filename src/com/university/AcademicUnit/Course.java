@@ -5,6 +5,14 @@ public class Course {
     private String courseName;
     private int creditHours;
 
+    public Course() {
+    }
+    public Course(String courseCode, String courseName, int creditHours) {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+        this.creditHours = creditHours;
+    }
+
     public String getCourseCode() {
         return courseCode;
     }

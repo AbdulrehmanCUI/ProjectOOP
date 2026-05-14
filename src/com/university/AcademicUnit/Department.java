@@ -5,6 +5,14 @@ public class Department {
     private String hodName;
     private int totalStudents;
 
+    public Department() {
+    }
+    public Department(String deptName, String hodName, int totalStudents) {
+        this.deptName = deptName;
+        this.hodName = hodName;
+        this.totalStudents = totalStudents;
+    }
+
     public String getDeptName() {
         return deptName;
     }
