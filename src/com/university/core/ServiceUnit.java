@@ -1,7 +1,8 @@
 package com.university.core;
 
 abstract class ServiceUnit {
-    protected int establishedYear;
-    protected String head;
+    protected int serviceHours;
+    protected int staffCount;
 
+    abstract double calculateOperationalCost();
 }
