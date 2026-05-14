@@ -1,6 +1,6 @@
 package com.university.core;
 
-class Campus_entity{
+abstract class Campus_entity{
     protected int entityID ;
     protected String name;
     protected String location;

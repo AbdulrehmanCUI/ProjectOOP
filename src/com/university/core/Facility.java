@@ -1,4 +1,4 @@
 package com.university.core;
 
-public class Facility {
+abstract class Facility {
 }

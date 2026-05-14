@@ -1,4 +1,7 @@
 package com.university.core;
 
-public class ServiceUnit {
+abstract class ServiceUnit {
+    protected int establishedYear;
+    protected String head;
+
 }

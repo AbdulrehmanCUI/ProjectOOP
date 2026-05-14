@@ -1,12 +1,12 @@
 package com.university.AcademicUnit;
 
 import com.university.core.*;
-
+import com.university.AcademicUnit.Equipment;
 class Classroom extends Academic_unit {
     private int roomNo;
     private int capacity;
     private String buildingName;
-    Equipment equipments;
+
 
     public Classroom() {
     }
