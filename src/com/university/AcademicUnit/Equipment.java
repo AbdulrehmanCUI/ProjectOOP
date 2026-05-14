@@ -5,6 +5,15 @@ public class Equipment {
     private String equipmentName;
     private String status;
 
+    public Equipment() {
+    }
+    public Equipment(int equipmentId, String equipmentName, String status) {
+        this.equipmentId = equipmentId;
+        this.equipmentName = equipmentName;
+        this.status = status;
+    }
+
+
     public int getEquipmentId() {
         return equipmentId;
     }
