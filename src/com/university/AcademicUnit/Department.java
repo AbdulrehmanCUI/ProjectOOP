@@ -16,24 +16,29 @@ public class Department {
     public String getDeptName() {
         return deptName;
     }
-
     public void setDeptName(String deptName) {
+
         this.deptName = deptName;
     }
-
     public String getHodName() {
         return hodName;
     }
-
     public void setHodName(String hodName) {
         this.hodName = hodName;
     }
-
     public int getTotalStudents() {
         return totalStudents;
     }
-
     public void setTotalStudents(int totalStudents) {
         this.totalStudents = totalStudents;
+    }
+
+
+    public double calculateOperationalCost(){
+        return totalStudents * 500;
+    }
+
+    public String generateReport(){
+        return "Department Students: " + totalStudents;
     }
 }

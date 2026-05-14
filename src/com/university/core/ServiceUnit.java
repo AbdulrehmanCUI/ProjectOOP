@@ -1,6 +1,7 @@
 package com.university.core;
 
-abstract class ServiceUnit {
+abstract class ServiceUnit extends Campus_entity
+{
     protected int serviceHours;
     protected int staffCount;
 

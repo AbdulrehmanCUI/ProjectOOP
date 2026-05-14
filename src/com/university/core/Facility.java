@@ -1,6 +1,6 @@
 package com.university.core;
 
-abstract class Facility {
+abstract class Facility extends Campus_entity {
     protected int capacity;
     protected double maintenanceCost;
 
