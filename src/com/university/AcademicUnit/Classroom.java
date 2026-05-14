@@ -5,6 +5,14 @@ public class Classroom {
     private int capacity;
     private String buildingName;
 
+    public Classroom() {
+    }
+    public Classroom(int roomNo, int capacity, String buildingName) {
+        this.roomNo = roomNo;
+        this.capacity = capacity;
+        this.buildingName = buildingName;
+    }
+
     public int getRoomNo() {
         return roomNo;
     }
