@@ -1,6 +1,6 @@
 package com.university.core;
 
-abstract class Campus_entity{
+class Campus_entity{
     protected int entityID ;
     protected String name;
     protected String location;
@@ -14,7 +14,7 @@ abstract class Campus_entity{
         this.name = name;
         this.location = location;
     }
-
-    abstract void calculateOperaƟonalCost();
-
 }
+
+
+

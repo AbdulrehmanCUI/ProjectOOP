@@ -1,9 +1,12 @@
 package com.university.AcademicUnit;
 
-public class Classroom {
+import com.university.core.*;
+
+class Classroom extends Academic_unit {
     private int roomNo;
     private int capacity;
     private String buildingName;
+    Equipment equipments;
 
     public Classroom() {
     }
@@ -11,6 +14,14 @@ public class Classroom {
         this.roomNo = roomNo;
         this.capacity = capacity;
         this.buildingName = buildingName;
+    }
+
+    public double calculateOperationalCost() {
+        double operationalCost = 0;
+        for (Equipment eq : equipments) {
+            operationalCost += eq.getOperationalCost();
+        }
+        return operationalCost;
     }
 
     public int getRoomNo() {
