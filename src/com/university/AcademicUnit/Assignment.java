@@ -5,6 +5,14 @@ public class Assignment {
     private int marks;
     private String deadline;
 
+    public Assignment() {
+    }
+    public Assignment(String title, int marks, String deadline) {
+        this.title = title;
+        this.marks = marks;
+        this.deadline = deadline;
+    }
+
     public String getTitle() {
         return title;
     }
