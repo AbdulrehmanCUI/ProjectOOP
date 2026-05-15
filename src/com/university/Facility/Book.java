@@ -19,7 +19,7 @@ public class Book {
         this.pages = pages;
     }
 
-
+    // Setter & Getter
     public void setTitle(String title) {
         this.title = title;
     }
@@ -45,7 +45,3 @@ public class Book {
         return title + " " + " " + author + " " + " " + pages;
     }
 }
-
-
-
-
