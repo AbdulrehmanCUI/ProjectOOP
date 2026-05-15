@@ -23,5 +23,6 @@ public class CampusRepository implements Repository<Equipment> {
     public Equipment get(int id) {
         return null;
     }
+
 }
 
