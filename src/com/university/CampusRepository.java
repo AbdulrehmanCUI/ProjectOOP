@@ -1,28 +1,47 @@
 package com.university;
 
 import com.university.AcademicUnit.Equipment;
+import com.university.Interfaces.Identifiable;
 import com.university.Interfaces.Repository;
 
-public class CampusRepository implements Repository<Equipment> {
-    @Override
-    public void add(Equipment obj) {
+import java.util.ArrayList;
 
+public class CampusRepository<T extends Identifiable> implements Repository<T> {
+    ArrayList<T> list = new ArrayList<>();
+    @Override
+    public void add(T obj) {
+        list.add(obj);
     }
 
     @Override
-    public boolean delete(int id) {
-        return false;
+    public void delete(int id) {
+        for(int i = 0; i < list.size();i++){
+            if(list.get(i).getID() == id){
+                list.remove(i);
+            }
+        }
+        System.out.println("Successfully Removed...");
     }
 
     @Override
-    public void update(int id, Equipment obj) {
-
+    public void update(int index, T obj) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getID() == obj.getID()) {
+                list.set( ,obj);
+                return;
+            }
+        }
     }
 
     @Override
-    public Equipment get(int id) {
+    public T getID(int id) {
         return null;
     }
+
+    public ArrayList<T> getAll(){
+        return list;
+    }
+
 
 }
 
