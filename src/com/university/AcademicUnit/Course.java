@@ -36,4 +36,9 @@ public class Course {
     public void setCreditHours(int creditHours) {
         this.creditHours = creditHours;
     }
+
+
+    public String toString(){
+        return courseCode + " " + " " + courseName + " " + " " + creditHours;
+    }
 }
