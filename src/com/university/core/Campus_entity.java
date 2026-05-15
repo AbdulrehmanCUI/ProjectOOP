@@ -1,6 +1,7 @@
 package com.university.core;
+import com.university.Interfaces.Identifiable;
 
-abstract class Campus_entity{
+abstract class Campus_entity implements Identifiable{
 
     // Attributes
     protected int entityID ;
@@ -24,6 +25,9 @@ abstract class Campus_entity{
         return entityID + " " + name + " " + location;
     }
 
+    public int getID() {
+        return entityID;
+    }
 }
 
 

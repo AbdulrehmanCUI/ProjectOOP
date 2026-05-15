@@ -6,6 +6,7 @@ abstract class Facility extends Campus_entity {
     protected double maintenanceCost;
     protected static int totalFacilityUsage = 0;
 
+
     // Abstract method
     abstract double calculateOperationalCost();
 
