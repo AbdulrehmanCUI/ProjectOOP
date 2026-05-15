@@ -41,4 +41,9 @@ public class Book {
     public int getPages() {
         return pages;
     }
+
+
+    public String toString(){
+        return title + " " + " " + author + " " + " " + pages;
+    }
 }
