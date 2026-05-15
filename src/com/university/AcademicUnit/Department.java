@@ -2,11 +2,17 @@ package com.university.AcademicUnit;
 
 import com.university.Interfaces.Reportable;
 import com.university.core.Academic_unit;
+import com.university.Person.Student;
+
+import java.util.ArrayList;
 
 public class Department extends Academic_unit implements Reportable {
     private String deptName;
     private String hodName;
     private int totalStudents;
+    ArrayList<Course> courses;
+    ArrayList<Student> students;
+    ArrayList<Assignment> assignments;
 
     public Department() {
     }
