@@ -41,4 +41,8 @@ public class Department {
     public String generateReport(){
         return "Department Students: " + totalStudents;
     }
+
+    public String toString(){
+        return deptName + " " + " " + hodName + " " + " " + totalStudents;
+    }
 }
