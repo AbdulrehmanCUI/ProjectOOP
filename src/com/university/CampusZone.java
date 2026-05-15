@@ -3,6 +3,11 @@ import
 import com.university.Facility.*;
 import com.university.ServiceUnit.*;
 
+import com.sun.jdi.connect.spi.TransportService;
+import com.university.Facility.Cafeteria;
+import com.university.Facility.Library;
+import com.university.ServiceUnit.SecurityService;
+
 public class CampusZone {
         Library library;
         Cafeteria cafeteria;
