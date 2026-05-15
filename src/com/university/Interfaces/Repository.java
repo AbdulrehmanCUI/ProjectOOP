@@ -6,4 +6,3 @@ public interface Repository<T> {
     T get(int id);
     void update(int id, T obj);
 }
-
