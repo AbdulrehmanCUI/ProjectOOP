@@ -40,4 +40,8 @@ public class Cafeteria {
     public String getTiming() {
         return timing;
     }
+
+    public String toString(){
+        return menu + " " + " " + seats + " " + " " + timing;
+    }
 }
