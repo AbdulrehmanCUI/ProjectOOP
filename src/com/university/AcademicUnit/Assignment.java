@@ -36,4 +36,8 @@ public class Assignment {
     public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
+
+    public String toString(){
+        return title + " " + " " + marks + " " + " " + deadline;
+    }
 }
