@@ -1,6 +1,9 @@
 package com.university.AcademicUnit;
 
-public class Department {
+import com.university.Interfaces.Reportable;
+import com.university.core.Academic_unit;
+
+public class Department extends Academic_unit implements Reportable {
     private String deptName;
     private String hodName;
     private int totalStudents;
@@ -13,6 +16,8 @@ public class Department {
         this.totalStudents = totalStudents;
     }
 
+
+    // Getter and Setter
     public String getDeptName() {
         return deptName;
     }

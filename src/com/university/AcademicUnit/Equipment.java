@@ -39,7 +39,7 @@ public class Equipment {
     }
 
     public double getOperationalCost() {
-
-    }
+        
+   }
 }
 

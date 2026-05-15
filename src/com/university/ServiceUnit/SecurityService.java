@@ -1,4 +1,6 @@
 package com.university.ServiceUnit;
 
-public class SecurityService {
+import com.university.Interfaces.Notifiable;
+
+public class SecurityService implements Notifiable {
 }

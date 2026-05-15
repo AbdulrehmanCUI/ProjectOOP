@@ -31,8 +31,8 @@ class Classroom extends Academic_unit {
         operationalCost += capacity * 50;
         return operationalCost;
     }
-    // Setters
 
+    // Setters
     public void setRoomNo(int roomNo) {
         this.roomNo = roomNo;
     }

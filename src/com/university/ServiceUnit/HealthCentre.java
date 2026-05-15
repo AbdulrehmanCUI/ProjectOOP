@@ -1,4 +1,6 @@
 package com.university.ServiceUnit;
 
-public class HealthCentre {
+import com.university.Interfaces.Notifiable;
+
+public class HealthCentre implements Notifiable {
 }

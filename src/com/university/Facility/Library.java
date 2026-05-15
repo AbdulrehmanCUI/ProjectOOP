@@ -1,6 +1,8 @@
 package com.university.Facility;
 
-public class Library {
+import com.university.Interfaces.Reportable;
+
+public class Library implements Reportable {
     private String librarian;
     private int totalBooks;
     private Book book;

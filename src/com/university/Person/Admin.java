@@ -1,4 +1,6 @@
 package com.university.Person;
 
-public class Admin {
+import com.university.Interfaces.Notifiable;
+
+public class Admin implements Notifiable {
 }

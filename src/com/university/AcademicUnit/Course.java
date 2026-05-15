@@ -1,6 +1,9 @@
 package com.university.AcademicUnit;
 
-public class Course {
+import com.university.Interfaces.Schedulable;
+
+public class Course implements Schedulable
+{
     private String courseCode;
     private String courseName;
     private int creditHours;
