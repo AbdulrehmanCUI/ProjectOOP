@@ -1,4 +1,6 @@
 package com.university.ServiceUnit;
 
-public class TransportService {
+import com.university.Interfaces.Schedulable;
+
+public class TransportService implements Schedulable {
 }
