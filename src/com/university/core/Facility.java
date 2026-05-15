@@ -5,4 +5,8 @@ abstract class Facility extends Campus_entity {
     protected double maintenanceCost;
 
     abstract double calculateOperationalCost();
+
+    public String toString(){
+        return capacity +" " + " " + maintenanceCost;
+    }
 }
