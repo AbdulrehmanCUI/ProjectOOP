@@ -6,6 +6,7 @@ public class Course {
     private String courseCode;
     private String courseName;
     private int creditHours;
+    protected static int totalCourse = 0;
 
     // Constructors
     public Course (){
@@ -14,6 +15,7 @@ public class Course {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.creditHours = creditHours;
+        totalCourse++;
     }
 
     // Getters & Setters
@@ -23,6 +25,7 @@ public class Course {
     public String getCourseName() {
         return courseName;
     }
+
     public int getCreditHours() {
         return creditHours;
     }
