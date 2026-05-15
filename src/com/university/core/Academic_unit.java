@@ -8,4 +8,7 @@ public abstract class Academic_unit extends Campus_entity {
 
 
         protected abstract double calculateOperationalCost();
+        public String toString(){
+            return establishedYear + " " + " " + head;
+    }
     }
