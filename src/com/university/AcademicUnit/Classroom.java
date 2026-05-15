@@ -45,4 +45,9 @@ class Classroom extends Academic_unit {
     public void setEquipments(ArrayList<Equipment> equipments) {
         this.equipments = equipments;
     }
+
+
+    public String toString(){
+        return roomNo + " " + " " + buildingName + " " + " " + equipments;
+    }
 }
