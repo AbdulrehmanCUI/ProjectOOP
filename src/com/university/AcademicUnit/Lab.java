@@ -38,4 +38,9 @@ public class Lab {
     public void setSupervisor(String supervisor) {
         this.supervisor = supervisor;
     }
+
+
+    public String toString(){
+        return labName + " " + " " + totalComputers + " " + " " + supervisor;
+    }
 }
