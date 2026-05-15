@@ -6,14 +6,16 @@ public class Equipment {
     private int equipmentId;
     private String equipmentName;
     private String status;
+    private int operationalCost;
 
     // Constructors
     public Equipment() {
     }
-    public Equipment(int equipmentId, String equipmentName, String status) {
+    public Equipment(int equipmentId, String equipmentName, String status, int operationalCost) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
         this.status = status;
+        this.operationalCost = operationalCost;
     }
 
 
@@ -36,9 +38,14 @@ public class Equipment {
     public void setStatus(String status) {
         this.status = status;
     }
+    public void setOperationalCost(int operationalCost) {
+        this.operationalCost = operationalCost;
+    }
+
 
     // getOperationalCost
-    public double getOperationalCost() {
+    public int getOperationalCost(){
+        return operationalCost;
     }
 
 
