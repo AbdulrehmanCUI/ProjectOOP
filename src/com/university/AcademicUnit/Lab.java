@@ -1,13 +1,15 @@
 package com.university.AcademicUnit;
 
 public class Lab {
+
+    // Attributes
     private String labName;
     private int totalComputers;
     private String supervisor;
 
+
     public Lab() {
     }
-
     public Lab(String labName, int totalComputers, String supervisor) {
         this.labName = labName;
         this.totalComputers = totalComputers;
@@ -15,31 +17,29 @@ public class Lab {
     }
 
 
+    // Getters & Setters
     public String getLabName() {
         return labName;
     }
-
-    public void setLabName(String labName) {
-        this.labName = labName;
-    }
-
     public int getTotalComputers() {
         return totalComputers;
     }
-
-    public void setTotalComputers(int totalComputers) {
-        this.totalComputers = totalComputers;
-    }
-
     public String getSupervisor() {
         return supervisor;
     }
-
+    public void setLabName(String labName) {
+        this.labName = labName;
+    }
+    public void setTotalComputers(int totalComputers) {
+        this.totalComputers = totalComputers;
+    }
     public void setSupervisor(String supervisor) {
         this.supervisor = supervisor;
     }
 
 
+    // toString method
+    @Override
     public String toString(){
         return labName + " " + " " + totalComputers + " " + " " + supervisor;
     }

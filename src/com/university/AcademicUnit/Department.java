@@ -6,7 +6,9 @@ import com.university.Person.Student;
 
 import java.util.ArrayList;
 
-public class Department extends Academic_unit implements Reportable {
+public class
+Department extends Academic_unit implements Reportable {
+    // Attributes
     private String deptName;
     private String hodName;
     private int totalStudents;
@@ -14,6 +16,7 @@ public class Department extends Academic_unit implements Reportable {
     ArrayList<Student> students;
     ArrayList<Assignment> assignments;
 
+    // Constructors
     public Department() {
     }
     public Department(String deptName, String hodName, int totalStudents) {
@@ -23,7 +26,7 @@ public class Department extends Academic_unit implements Reportable {
     }
 
 
-    // Getter and Setter
+    // Getter & Setter
     public String getDeptName() {
         return deptName;
     }
@@ -45,14 +48,20 @@ public class Department extends Academic_unit implements Reportable {
     }
 
 
+    // Overridden calculateOperationalCost() from Academic_unit
+    @Override
     public double calculateOperationalCost(){
         return totalStudents * 500;
     }
 
+    // Implemented generateReport() from Reportable
+    @Override
     public String generateReport(){
         return "Department Students: " + totalStudents;
     }
 
+    // Overridden toString() from Academic_unit
+    @Override
     public String toString(){
         return deptName+ " " + " " + hodName + " " + " " + totalStudents;
     }
