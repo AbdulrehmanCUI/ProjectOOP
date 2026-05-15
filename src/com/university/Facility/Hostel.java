@@ -44,4 +44,5 @@ public class Hostel {
     public String toString(){
         return rooms + " " + " " + warden + " " + " " + students;
     }
+
 }

@@ -1,5 +1,5 @@
 package com.university.Interfaces;
 
-interface Reportable {
-    void generateReport();
+public interface Reportable {
+    String generateReport();
 }
