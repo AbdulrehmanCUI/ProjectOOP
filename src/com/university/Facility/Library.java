@@ -40,4 +40,8 @@ public class Library {
     public Book getBook() {
         return book;
     }
+
+    public String toString(){
+        return librarian + " " + " " + totalBooks + " " + " " + book;
+    }
 }
