@@ -41,5 +41,9 @@ public class Equipment {
     public double getOperationalCost() {
 
     }
+
+    public String toString(){
+        return equipmentId + " " + " " + equipmentName + " " + " " + status;
+    }
 }
 
