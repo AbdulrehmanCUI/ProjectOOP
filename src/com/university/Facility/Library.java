@@ -1,22 +1,25 @@
 package com.university.Facility;
 
+import java.util.ArrayList;
+
 public class Library {
 
     // Attributes
     private String librarian;
     private int totalBooks;
-    private Book book;
+    private ArrayList<Book> book;
 
     // Constructor
     Library() {
         librarian = "Unknown";
         totalBooks = 0;
-        book = new Book();
+        book = new ArrayList<>();
     }
-    Library(String librarian, int totalBooks, Book book) {
+    Library(String librarian, int totalBooks, ArrayList<Book> book){
         this.librarian = librarian;
         this.totalBooks = totalBooks;
         this.book = book;
+
     }
 
 
@@ -33,11 +36,13 @@ public class Library {
     public int getTotalBooks() {
         return totalBooks;
     }
-    public void setBook(Book book) {
+    public void setBook(ArrayList<Book> book) {
         this.book = book;
     }
-    public Book getBook() {
-        return book;
+    public void getBook() {
+        for(Book b : book){
+            System.out.println(b + "\n");
+        }
     }
 
 
