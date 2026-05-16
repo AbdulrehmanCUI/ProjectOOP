@@ -12,6 +12,6 @@ abstract class Facility extends Campus_entity {
 
     // toString()
     public String toString(){
-        return capacity +" " + " " + maintenanceCost;
+        return capacity + " " + " " + maintenanceCost;
     }
 }

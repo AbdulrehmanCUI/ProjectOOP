@@ -9,8 +9,7 @@ abstract class Campus_entity implements Identifiable{
     protected String location;
 
     // Constructors
-    public Campus_entity(){
-    }
+    public Campus_entity(){}
     public Campus_entity(int entityID, String name, String location){
         this.entityID = entityID;
         this.name = name;

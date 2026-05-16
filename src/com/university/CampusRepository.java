@@ -6,7 +6,8 @@ import com.university.Interfaces.Repository;
 
 import java.util.ArrayList;
 
-public class CampusRepository<T extends Identifiable> implements Repository<T> {
+public class CampusRepository<T extends Identifiable> implements Repository<T>{
+
     ArrayList<T> list = new ArrayList<>();
 
     // Add method

@@ -65,4 +65,9 @@ Department extends Academic_unit implements Reportable {
     public String toString(){
         return deptName+ " " + " " + hodName + " " + " " + totalStudents;
     }
+
+    // Add Course
+    public void addCourse(Course c){
+        courses.add(c);
+    }
 }

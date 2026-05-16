@@ -8,5 +8,4 @@ public interface Repository<T> {
     T getID(int id);
     void update(int id, T obj);
     public ArrayList<T> getAll();
-
 }

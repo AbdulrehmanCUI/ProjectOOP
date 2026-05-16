@@ -14,7 +14,7 @@ class Classroom extends Academic_unit {
     private ArrayList<Equipment> equipments = new ArrayList<>();
 
     // Constructors
-    public Classroom() {}
+    public Classroom(){}
     public Classroom(int roomNo, int capacity, String buildingName) {
         this.roomNo = roomNo;
         this.capacity = capacity;
@@ -24,9 +24,7 @@ class Classroom extends Academic_unit {
     // Overridden calculateOperationalCost from Academic_Unit
     @Override
     public double calculateOperationalCost() {
-
         double operationalCost = 0;
-
         for (Equipment eq : equipments) {
             operationalCost += eq.getOperationalCost();
         }
@@ -34,6 +32,8 @@ class Classroom extends Academic_unit {
         operationalCost += capacity * 50;
         return operationalCost;
     }
+
+
 
     // Setters
     public void setRoomNo(int roomNo) {
