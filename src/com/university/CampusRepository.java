@@ -2,8 +2,6 @@ package com.university;
 
 import com.university.Interfaces.Identifiable;
 import com.university.Interfaces.Repository;
-import com.university.Data.*;
-import com.university.Person.Student;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -60,7 +58,7 @@ public class CampusRepository<T extends Identifiable> implements Repository<T>, 
     // Save File
     public void save() {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Student.dat"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("student.dat"));
             oos.writeObject(list);
 
             System.out.println("File Saved Successfully...");
