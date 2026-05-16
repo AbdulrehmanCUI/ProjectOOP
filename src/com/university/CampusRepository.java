@@ -1,12 +1,16 @@
 package com.university;
 
-import com.university.AcademicUnit.Equipment;
 import com.university.Interfaces.Identifiable;
 import com.university.Interfaces.Repository;
+import com.university.Data.*;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CampusRepository<T extends Identifiable> implements Repository<T>{
+public class CampusRepository<T extends Identifiable> implements Repository<T>, Serializable {
 
     ArrayList<T> list = new ArrayList<>();
 
@@ -30,7 +34,7 @@ public class CampusRepository<T extends Identifiable> implements Repository<T>{
 
     // Update method
     @Override
-    public void update(int index, T obj) {
+    public void update(T obj) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getID() == obj.getID()) {
                 list.set(i,obj);
@@ -53,6 +57,20 @@ public class CampusRepository<T extends Identifiable> implements Repository<T>{
     // All the items in the array list
     public ArrayList<T> getAll(){
         return list;
+    }
+
+    public void save(){
+            try{
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Student.dat"));
+                oos.writeObject(list);
+
+                System.out.println("File Saved Successfully...");
+
+
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+
     }
 
 

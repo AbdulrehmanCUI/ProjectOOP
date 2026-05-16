@@ -5,7 +5,7 @@ import com.university.AcademicUnit.Equipment;
 import java.util.ArrayList;
 
 
-public abstract class Academic_unit extends Campus_entity {
+public abstract class AcademicUnit extends CampusEntity {
 
         // Attributes
         protected int establishedYear;
@@ -14,8 +14,8 @@ public abstract class Academic_unit extends Campus_entity {
         protected int numberOfStudents;
 
         // Constructor
-        public Academic_unit(){}
-        public Academic_unit(int entityID, String name, String location,int numberOfStudents){
+        public AcademicUnit(){}
+        public AcademicUnit(int entityID, String name, String location, int numberOfStudents){
             super(entityID, name, location);
             this.numberOfStudents = numberOfStudents;
         }

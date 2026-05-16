@@ -1,6 +1,8 @@
 package com.university.AcademicUnit;
 
-public class Course {
+import com.university.Interfaces.Schedulable;
+
+public class Course implements Schedulable {
 
     // Attributes
     private String courseCode;
@@ -44,5 +46,27 @@ public class Course {
     @Override
     public String toString(){
         return courseCode + " " + " " + courseName + " " + " " + creditHours;
+    }
+
+    public String generateSchedule(ArrayList<Classroom> classrooms) {
+
+        if (classrooms == null || classrooms.isEmpty()) {
+            return "No Slot Available";
+        }
+
+        for (Classroom c : classrooms) {
+
+            if (c != null && c.isAvailable()) {
+
+                this.classroom = c;
+
+                // optional: reserve slot if you use slot tracking
+                // c.addOccupiedSlot("ASSIGNED");
+
+                return "Scheduled";
+            }
+        }
+
+        return "No Slot Available";
     }
 }

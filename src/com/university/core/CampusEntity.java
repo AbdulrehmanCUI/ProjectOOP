@@ -1,7 +1,7 @@
 package com.university.core;
 import com.university.Interfaces.Identifiable;
 
-abstract class Campus_entity implements Identifiable{
+abstract class CampusEntity implements Identifiable{
 
     // Attributes
     protected int entityID ;
@@ -9,8 +9,8 @@ abstract class Campus_entity implements Identifiable{
     protected String location;
 
     // Constructors
-    public Campus_entity(){}
-    public Campus_entity(int entityID, String name, String location){
+    public CampusEntity(){}
+    public CampusEntity(int entityID, String name, String location){
         this.entityID = entityID;
         this.name = name;
         this.location = location;
