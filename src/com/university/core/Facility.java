@@ -1,6 +1,6 @@
 package com.university.core;
 
-abstract class Facility extends CampusEntity {
+public abstract class Facility extends CampusEntity {
     // Attributes
     protected int capacity;
     protected double maintenanceCost;
@@ -8,7 +8,7 @@ abstract class Facility extends CampusEntity {
 
 
     // Abstract method
-    abstract double calculateOperationalCost();
+    public abstract double calculateOperationalCost();
 
     // toString()
     public String toString(){
