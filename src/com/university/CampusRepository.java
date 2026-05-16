@@ -3,11 +3,9 @@ package com.university;
 import com.university.Interfaces.Identifiable;
 import com.university.Interfaces.Repository;
 import com.university.Data.*;
+import com.university.Person.Student;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
 public class CampusRepository<T extends Identifiable> implements Repository<T>, Serializable {
@@ -59,19 +57,24 @@ public class CampusRepository<T extends Identifiable> implements Repository<T>, 
         return list;
     }
 
-    public void save(){
-            try{
-                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Student.dat"));
-                oos.writeObject(list);
+    // Save File
+    public void save() {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Student.dat"));
+            oos.writeObject(list);
 
-                System.out.println("File Saved Successfully...");
+            System.out.println("File Saved Successfully...");
 
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-            }catch (Exception e){
-                System.out.println(e.getMessage());
-            }
+    // Load method
+    public void load(){
 
     }
+
 
 
 }
