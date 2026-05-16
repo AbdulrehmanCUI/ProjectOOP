@@ -2,7 +2,9 @@ package com.university.Person;
 
 import com.university.Interfaces.Identifiable;
 
-public class Student implements Identifiable {
+import java.io.Serializable;
+
+public class Student implements Identifiable, Serializable {
     protected static int totalStudent = 0;
     protected int id;
     protected String name;

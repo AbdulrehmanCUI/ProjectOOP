@@ -1,9 +1,11 @@
 package com.university.AcademicUnit;
 
 import com.university.core.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Classroom extends AcademicUnit {
+public class Classroom extends AcademicUnit implements Serializable {
 
     // Attributes
     private int roomNo;

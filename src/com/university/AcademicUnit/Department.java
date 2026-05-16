@@ -4,9 +4,10 @@ import com.university.Interfaces.Reportable;
 import com.university.core.AcademicUnit;
 import com.university.Person.Student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Department extends AcademicUnit implements Reportable {
+public class Department extends AcademicUnit implements Reportable, Serializable {
 
     private String deptName;
     private String hodName;

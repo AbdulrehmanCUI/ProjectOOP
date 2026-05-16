@@ -1,7 +1,9 @@
 package com.university.core;
 import com.university.Interfaces.Identifiable;
 
-abstract class CampusEntity implements Identifiable{
+import java.io.Serializable;
+
+abstract class CampusEntity implements Identifiable, Serializable {
 
     // Attributes
     protected int entityID ;

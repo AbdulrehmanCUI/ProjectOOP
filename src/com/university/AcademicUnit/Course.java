@@ -2,13 +2,16 @@ package com.university.AcademicUnit;
 
 import com.university.Interfaces.Schedulable;
 
-public class Course implements Schedulable {
+import java.io.Serializable;
+
+public class Course implements Schedulable, Serializable {
 
     // Attributes
     private String courseCode;
     private String courseName;
     private int creditHours;
     protected static int totalCourse = 0;
+    private Classroom classroom;
 
     // Constructors
     public Course (){
@@ -68,5 +71,17 @@ public class Course implements Schedulable {
         }
 
         return "No Slot Available";
+    }
+
+    @Override
+    public void generateSchedule() {
+
+        String schedule = "Course: " + courseName + "\n"
+                + "Teacher: " + teacherName + "\n"
+                + "Day: " + day + "\n"
+                + "Time: " + time + "\n"
+                + "Total Students: " + students.size();
+
+        System.out.println(schedule);
     }
 }

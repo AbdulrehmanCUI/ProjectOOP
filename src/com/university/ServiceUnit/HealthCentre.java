@@ -2,7 +2,9 @@ package com.university.ServiceUnit;
 
 import com.university.Interfaces.Notifiable;
 
-public class HealthCentre implements Notifiable {
+import java.io.Serializable;
+
+public class HealthCentre implements Notifiable, Serializable {
     @Override
     public void sendNotification(String message){
 
