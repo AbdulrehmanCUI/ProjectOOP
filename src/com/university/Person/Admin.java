@@ -43,6 +43,7 @@ public class Admin
     {
         this.salary = salary;
     }
+
     public String toString(){
         return role + " " + " " + office + " " + " " + salary;
     }

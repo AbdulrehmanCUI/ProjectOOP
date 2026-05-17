@@ -1,8 +1,10 @@
 package com.university.AcademicUnit;
-
 import com.university.Interfaces.Schedulable;
+import com.university.Person.Student;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 
 public class Course implements Schedulable, Serializable {
 
@@ -10,8 +12,12 @@ public class Course implements Schedulable, Serializable {
     private String courseCode;
     private String courseName;
     private int creditHours;
-    protected static int totalCourse = 0;
     private Classroom classroom;
+    private String teacherName;
+    private String day;
+    private String time;
+    private ArrayList<Student> students = new ArrayList<>();
+    protected static int totalCourse = 0;
 
     // Constructors
     public Course (){
@@ -75,6 +81,7 @@ public class Course implements Schedulable, Serializable {
 
     @Override
     public void generateSchedule() {
+
 
         String schedule = "Course: " + courseName + "\n"
                 + "Teacher: " + teacherName + "\n"
