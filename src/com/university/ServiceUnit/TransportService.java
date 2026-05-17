@@ -8,6 +8,8 @@ public class TransportService implements Schedulable {
         private String timing;
         private int busNo;
 
+        public TransportService(String route, String alternativeRoute,
+                                String timing, int busNo) {
 
             this.route = route;
             this.alternativeRoute = alternativeRoute;
