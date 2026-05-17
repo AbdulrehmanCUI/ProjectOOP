@@ -41,5 +41,7 @@ public abstract class AcademicUnit extends CampusEntity {
     @Override
     public String toString(){
 
+        return establishedYear + " " + head;
+    }
 
     }
