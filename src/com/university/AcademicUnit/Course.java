@@ -48,7 +48,7 @@ public class Course implements Schedulable, Serializable {
     // Overridden toString()
     @Override
     public String toString(){
-        return courseCode + " " + " " + courseName + " " + " " + creditHours;
+        return "Course code " +courseCode + " " + "Name" + courseName + " " + "Credit hours:" + creditHours;
     }
 
     public String generateSchedule(ArrayList<Classroom> classrooms) {
