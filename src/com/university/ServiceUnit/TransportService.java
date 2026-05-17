@@ -4,7 +4,43 @@ import com.university.Interfaces.Schedulable;
 import java.io.Serializable;
 
 
-public class TransportService implements Schedulable, Serializable {
+            this.route = route;
+            this.alternativeRoute = alternativeRoute;
+            this.timing = timing;
+            this.busNo = busNo;
+        }
+
+        public String getRoute() {
+            return route;
+        }
+
+        public String getAlternativeRoute() {
+            return alternativeRoute;
+        }
+
+        public String getTiming() {
+            return timing;
+        }
+
+        public int getBusNo() {
+            return busNo;
+        }
+
+        public void setRoute(String route) {
+            this.route = route;
+        }
+
+        public void setAlternativeRoute(String alternativeRoute) {
+            this.alternativeRoute = alternativeRoute;
+        }
+
+        public void setTiming(String timing) {
+            this.timing = timing;
+        }
+
+        public void setBusNo(int busNo) {
+            this.busNo = busNo;
+        }
 
         @Override
         public void generateSchedule() {
