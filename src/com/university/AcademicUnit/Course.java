@@ -81,7 +81,16 @@ public class Course implements Schedulable, Serializable {
 
     @Override
     public void generateSchedule() {
+        
+        if(classroom != null && !classroom.isAvailable()) {
 
+            System.out.println("Schedule conflict detected!");
+
+            day = "Tuesday";
+            time = "11:00 AM";
+
+            System.out.println("Schedule updated automatically.");
+        }
 
         String schedule = "Course: " + courseName + "\n"
                 + "Teacher: " + teacherName + "\n"
