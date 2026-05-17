@@ -2,46 +2,52 @@ package com.university.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CampusMapPanel extends JPanel {
 
-    @Override
-    protected void paintComponent(Graphics g) {
+    public CampusMapPanel() {
 
-        super.paintComponent(g);
+        setLayout(null);
+        setBackground(new Color(220, 226, 234));
 
-        setBackground(Color.WHITE);
+        add(createCard("Computer Science", 40, 60));
+        add(createCard("Electrical Eng.", 250, 60));
+        add(createCard("Programming Lab", 40, 180));
+        add(createCard("Central Library", 250, 180));
+        add(createCard("Main Cafeteria", 40, 300));
+        add(createCard("Boys Hostel", 250, 300));
+        add(createCard("Campus Shuttle", 460, 300));
+        add(createCard("Medical Center", 460, 180));
+    }
 
-        g.setFont(new Font("Arial", Font.BOLD, 18));
+    private JButton createCard(String text, int x, int y) {
 
-        // LIBRARY
-        g.setColor(Color.GREEN);
-        g.fillRect(100, 100, 150, 100);
-        g.setColor(Color.BLACK);
-        g.drawString("Library", 145, 155);
+        JButton btn = new JButton(text);
 
-        // CAFETERIA
-        g.setColor(Color.YELLOW);
-        g.fillRect(350, 100, 150, 100);
-        g.setColor(Color.BLACK);
-        g.drawString("Cafeteria", 385, 155);
+        btn.setBounds(x, y, 170, 80);
+        btn.setBackground(new Color(76, 175, 80));
+        btn.setForeground(Color.WHITE);
+        btn.setFont(new Font("Arial", Font.BOLD, 14));
+        btn.setFocusPainted(false);
+        btn.setBorder(BorderFactory.createLineBorder(new Color(50, 120, 60), 2));
 
-        // HOSTEL
-        g.setColor(Color.CYAN);
-        g.fillRect(600, 100, 150, 100);
-        g.setColor(Color.BLACK);
-        g.drawString("Hostel", 650, 155);
+        btn.setToolTipText(text + " - Active");
 
-        // TRANSPORT
-        g.setColor(Color.RED);
-        g.fillRect(220, 320, 180, 100);
-        g.setColor(Color.WHITE);
-        g.drawString("Transport Service", 240, 375);
+        btn.addMouseListener(new MouseAdapter() {
 
-        // HEALTH CENTER
-        g.setColor(Color.PINK);
-        g.fillRect(500, 320, 180, 100);
-        g.setColor(Color.BLACK);
-        g.drawString("Health Center", 530, 375);
+            public void mouseEntered(MouseEvent e) {
+                btn.setBackground(new Color(92, 200, 95));
+                btn.setBounds(btn.getX() - 5, btn.getY() - 5, 180, 90);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                btn.setBackground(new Color(76, 175, 80));
+                btn.setBounds(x, y, 170, 80);
+            }
+        });
+
+        return btn;
     }
 }

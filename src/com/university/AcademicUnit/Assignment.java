@@ -2,7 +2,7 @@ package com.university.AcademicUnit;
 
 import java.util.InputMismatchException;
 
-public class Assignment {
+public class Assignment{
 
 
     // Attributes

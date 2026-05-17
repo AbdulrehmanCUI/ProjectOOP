@@ -1,125 +1,81 @@
 package com.university.GUI;
 
-import com.university.CampusRepository;
-import com.university.Person.Student;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class StudentPanel extends JPanel {
 
-    private CampusRepository<Student> repo = new CampusRepository<>();
-
     private JTable table;
     private DefaultTableModel model;
 
-    private JTextField idField = new JTextField();
-    private JTextField nameField = new JTextField();
-    private JTextField deptField = new JTextField();
+    private JTextField idField;
+    private JTextField nameField;
+    private JTextField deptField;
 
     public StudentPanel() {
 
-        setLayout(new BorderLayout(20, 20));
-        setBackground(new Color(248, 250, 252));
+        setLayout(new BorderLayout(15, 15));
+        setBackground(new Color(245, 247, 250));
 
-        JLabel heading = new JLabel("Student Management", SwingConstants.CENTER);
-        heading.setFont(new Font("Arial", Font.BOLD, 30));
+        JPanel formPanel = new JPanel(new GridLayout(3, 4, 15, 15));
+        formPanel.setBorder(BorderFactory.createTitledBorder("Student Details"));
 
-        add(heading, BorderLayout.NORTH);
+        idField = new JTextField();
+        nameField = new JTextField();
+        deptField = new JTextField();
+
+        formPanel.add(new JLabel("Student ID"));
+        formPanel.add(idField);
+
+        formPanel.add(new JLabel("Name"));
+        formPanel.add(nameField);
+
+        formPanel.add(new JLabel("Department"));
+        formPanel.add(deptField);
+
+        formPanel.add(new JLabel(""));
+        formPanel.add(new JLabel(""));
+
+        add(formPanel, BorderLayout.NORTH);
 
         model = new DefaultTableModel(
-                new String[]{"ID", "Name", "Department"}, 0
+                new String[]{"ID", "Name", "Department"},
+                0
         );
 
         table = new JTable(model);
-        table.setRowHeight(28);
+        table.setRowHeight(30);
 
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(table);
 
-        JPanel form = new JPanel(new GridLayout(4, 2, 15, 15));
-        form.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        add(scrollPane, BorderLayout.CENTER);
 
-        form.add(new JLabel("Student ID"));
-        form.add(idField);
+        JPanel buttonPanel = new JPanel();
 
-        form.add(new JLabel("Student Name"));
-        form.add(nameField);
+        JButton addBtn = new JButton("Add");
+        JButton updateBtn = new JButton("Update");
+        JButton deleteBtn = new JButton("Delete");
 
-        form.add(new JLabel("Department"));
-        form.add(deptField);
+        buttonPanel.add(addBtn);
+        buttonPanel.add(updateBtn);
+        buttonPanel.add(deleteBtn);
 
-        JButton addBtn = new JButton("Add Student");
-        JButton updateBtn = new JButton("Update Student");
-        JButton deleteBtn = new JButton("Delete Student");
+        add(buttonPanel, BorderLayout.SOUTH);
 
-        form.add(addBtn);
-        form.add(updateBtn);
-        form.add(deleteBtn);
-
-        add(form, BorderLayout.SOUTH);
-
-        addBtn.addActionListener(e -> addStudent());
-        updateBtn.addActionListener(e -> updateStudent());
-        deleteBtn.addActionListener(e -> deleteStudent());
-    }
-
-    private void addStudent() {
-
-        try {
-
-            Student s = new Student(
-                    Integer.parseInt(idField.getText()),
+        addBtn.addActionListener(e -> {
+            model.addRow(new Object[]{
+                    idField.getText(),
                     nameField.getText(),
                     deptField.getText()
-            );
-
-            repo.add(s);
-            refreshTable();
-            clearFields();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Invalid Input");
-        }
-    }
-
-    private void updateStudent() {
-
-        Student s = new Student(
-                Integer.parseInt(idField.getText()),
-                nameField.getText(),
-                deptField.getText()
-        );
-
-        repo.update(s);
-        refreshTable();
-    }
-
-    private void deleteStudent() {
-
-        repo.delete(Integer.parseInt(idField.getText()));
-        refreshTable();
-    }
-
-    private void refreshTable() {
-
-        model.setRowCount(0);
-
-        for (Student s : repo.getAll()) {
-
-            model.addRow(new Object[]{
-                    s.getId(),
-                    s.getName(),
-                    s.getDepartment()
             });
-        }
-    }
+        });
 
-    private void clearFields() {
-
-        idField.setText("");
-        nameField.setText("");
-        deptField.setText("");
+        deleteBtn.addActionListener(e -> {
+            int row = table.getSelectedRow();
+            if (row >= 0) {
+                model.removeRow(row);
+            }
+        });
     }
 }

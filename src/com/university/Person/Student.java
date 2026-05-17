@@ -20,12 +20,15 @@ public class Student implements Identifiable, Serializable {
     public int getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public String getDepartment() {
         return department;
     }
+
     public static int getTotalStudent() {
         return totalStudent;
     }
@@ -35,6 +38,7 @@ public class Student implements Identifiable, Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     public void setDepartment(String department) {
         this.department = department;
     }
@@ -48,6 +52,8 @@ public class Student implements Identifiable, Serializable {
 
     @Override
     public String toString() {
-        return "Name " + name + ", ID: " + id + ", Department: " + department; }
+        return "Name " + name + ", ID: " + id + ", Department: " + department;
+    }
+}
 
 

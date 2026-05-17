@@ -14,47 +14,73 @@ public class CampusRepository<T extends Identifiable> implements Repository<T>, 
     // Add method
     @Override
     public void add(T obj) {
-        list.add(obj);
+        try{
+            list.add(obj);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
+
 
     // Delete
     @Override
     public void delete(int id) {
-        for(int i = 0; i < list.size();i++){
-            if(list.get(i).getID() == id){
-                list.remove(i);
-                return;
+        try{
+            for(int i = 0; i < list.size();i++){
+                if(list.get(i).getID() == id){
+                    list.remove(i);
+                    return;
+                }
             }
-        }
         System.out.println("Successfully Removed...");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     // Update method
     @Override
     public void update(T obj) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getID() == obj.getID()) {
-                list.set(i,obj);
-                return;
+        try{
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getID() == obj.getID()) {
+                    list.set(i,obj);
+                    return;
+                }
             }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
+
 
     // getID method
     @Override
     public T getID(int id) {
-        for(T obj : list){
-            if(obj.getID() == id){
-                return obj;
+        try{
+            for(T obj : list){
+                if(obj.getID() == id){
+                    return obj;
+                }
             }
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return null;
     }
 
     // All the items in the array list
     public ArrayList<T> getAll(){
-        return list;
+        try{
+            return list;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
+
 
     // Save File
     public void save() {

@@ -11,7 +11,8 @@ public abstract class AcademicUnit extends CampusEntity {
     ArrayList<Equipment> equipments = new ArrayList<>();
     protected int numberOfStudents;
 
-    public AcademicUnit(){}
+    public AcademicUnit() {
+    }
 
     public AcademicUnit(int entityID, String name,
                         String location, int numberOfStudents) {
@@ -19,52 +20,35 @@ public abstract class AcademicUnit extends CampusEntity {
         super(entityID, name, location);
 
         try {
-
-            if(numberOfStudents < 0){
+            if (numberOfStudents < 0) {
                 System.out.println("Number of students cannot be negative");
             }
-
             this.numberOfStudents = numberOfStudents;
-
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-
             this.numberOfStudents = 0;
         }
     }
 
-
-    protected double calculateOperationalCost(){
-
+    protected double calculateOperationalCost() {
         double cost = 0;
-
-        try{
-
-            for(Equipment e : equipments){
-
-                if(e == null){
-                   System.out.println("Equipment object is missing");
+        try {
+            for (Equipment e : equipments) {
+                if (e == null) {
+                    System.out.println("Equipment object is missing");
                 }
-
                 cost += e.getOperationalCost();
             }
-
-        }
-
-        catch(NullPointerException e){
-
+        } catch (Exception e){
             System.out.println(e.getMessage());
         }
-
         return cost + (numberOfStudents * 5);
     }
 
 
     @Override
-    public String toString(){
+    public String toString() {
 
         return establishedYear + " " + head;
     }
-
 }

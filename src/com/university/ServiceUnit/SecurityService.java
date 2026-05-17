@@ -6,7 +6,8 @@ import java.io.Serializable;
 
 public class SecurityService implements Notifiable, Serializable {
     @Override
-    public void sendNotification(String message){
+    public void sendNotification(){
+        System.out.println("Security Service Alert: Emergency situation detected on campus. Security personnel have been dispatched.");
 
     }
 }

@@ -5,89 +5,56 @@ import java.awt.*;
 
 public class DashboardFrame extends JFrame {
 
-    private CardLayout cardLayout;
-    private JPanel contentPanel;
-
     public DashboardFrame() {
 
-        setTitle("Smart University Campus Management System");
-        setSize(1400, 850);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Smart Campus Management System");
+        setSize(1400, 900);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // TOP HEADER
-        add(createHeader(), BorderLayout.NORTH);
-
-        // CARD LAYOUT
-        cardLayout = new CardLayout();
-        contentPanel = new JPanel(cardLayout);
-
-        contentPanel.add(new DashboardPanel(), "dashboard");
-        contentPanel.add(new StudentPanel(), "students");
-        contentPanel.add(new CoursePanel(), "courses");
-        contentPanel.add(new FacilityPanel(), "facilities");
-        contentPanel.add(new ReportPanel(), "reports");
-        contentPanel.add(new CampusMapPanel(), "campusmap");
-
-        add(createSidebar(), BorderLayout.WEST);
-        add(contentPanel, BorderLayout.CENTER);
-
-        setVisible(true);
-    }
-
-    private JPanel createHeader() {
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setPreferredSize(new Dimension(0, 70));
-        panel.setBackground(new Color(15, 23, 42));
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.setBackground(new Color(24, 44, 97));
+        topPanel.setPreferredSize(new Dimension(100, 80));
 
         JLabel title = new JLabel(
-                "Smart University Campus Management System",
-                SwingConstants.CENTER
+                "Smart University Campus Management System"
         );
 
         title.setForeground(Color.WHITE);
-        title.setFont(new Font("Arial", Font.BOLD, 28));
+        title.setFont(new Font("Arial", Font.BOLD, 22));
+        title.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
 
-        panel.add(title, BorderLayout.CENTER);
+        topPanel.add(title, BorderLayout.WEST);
 
-        return panel;
-    }
+        JPanel rightPanel = new JPanel();
+        rightPanel.setOpaque(false);
 
-    private JPanel createSidebar() {
+        JButton saveBtn = new JButton("Save Now");
+        JButton logoutBtn = new JButton("Logout");
 
-        JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(240, 0));
-        panel.setBackground(new Color(30, 41, 59));
-        panel.setLayout(new GridLayout(10, 1, 10, 10));
+        rightPanel.add(saveBtn);
+        rightPanel.add(logoutBtn);
 
-        String[] items = {
-                "Dashboard",
-                "Students",
-                "Courses",
-                "Facilities",
-                "Reports",
-                "CampusMap"
-        };
+        topPanel.add(rightPanel, BorderLayout.EAST);
 
-        for (String name : items) {
+        add(topPanel, BorderLayout.NORTH);
 
-            JButton btn = new JButton(name);
+        JTabbedPane tabs = new JTabbedPane();
 
-            btn.setFocusPainted(false);
-            btn.setBackground(new Color(51, 65, 85));
-            btn.setForeground(Color.WHITE);
-            btn.setFont(new Font("Arial", Font.BOLD, 18));
-            btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        tabs.addTab("Campus Map", new CampusMapPanel());
+        tabs.addTab("Students", new StudentPanel());
+        tabs.addTab("Courses", new CoursePanel());
+        tabs.addTab("Facilities", new FacilityPanel());
+        tabs.addTab("Timetable & Reports", new TimetableReportPanel());
 
-            btn.addActionListener(e ->
-                    cardLayout.show(contentPanel, name.toLowerCase())
-            );
+        add(tabs, BorderLayout.CENTER);
 
-            panel.add(btn);
-        }
+        logoutBtn.addActionListener(e -> {
+            new LoginFrame();
+            dispose();
+        });
 
-        return panel;
+        setVisible(true);
     }
 }

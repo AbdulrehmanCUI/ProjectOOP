@@ -6,86 +6,51 @@ import java.awt.*;
 
 public class CoursePanel extends JPanel {
 
-    private JTable table;
-    private DefaultTableModel model;
-
-    private JTextField codeField = new JTextField();
-    private JTextField titleField = new JTextField();
-    private JTextField teacherField = new JTextField();
-    private JTextField scheduleField = new JTextField();
-
     public CoursePanel() {
 
-        setLayout(new BorderLayout(20, 20));
+        setLayout(new BorderLayout(15, 15));
+        setBackground(new Color(245, 247, 250));
 
-        JLabel heading = new JLabel("Course Management", SwingConstants.CENTER);
-        heading.setFont(new Font("Arial", Font.BOLD, 30));
+        JPanel top = new JPanel(new GridLayout(3, 4, 15, 15));
 
-        add(heading, BorderLayout.NORTH);
+        top.setBorder(BorderFactory.createTitledBorder("Course Details"));
 
-        model = new DefaultTableModel(
-                new String[]{"Course Code", "Title", "Teacher", "Schedule"},
-                0
+        top.add(new JLabel("Course Code"));
+        top.add(new JTextField());
+
+        top.add(new JLabel("Title"));
+        top.add(new JTextField());
+
+        top.add(new JLabel("Teacher"));
+        top.add(new JTextField());
+
+        top.add(new JLabel("Time Slot"));
+        top.add(new JTextField());
+
+        add(top, BorderLayout.NORTH);
+
+        JTable table = new JTable(
+                new DefaultTableModel(
+                        new String[]{
+                                "Code",
+                                "Title",
+                                "Teacher",
+                                "Time"
+                        },
+                        0
+                )
         );
 
-        table = new JTable(model);
-        table.setRowHeight(28);
+        table.setRowHeight(30);
 
         add(new JScrollPane(table), BorderLayout.CENTER);
 
-        JPanel form = new JPanel(new GridLayout(5, 2, 15, 15));
-        form.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        JPanel bottom = new JPanel();
 
-        form.add(new JLabel("Course Code"));
-        form.add(codeField);
+        bottom.add(new JButton("Add"));
+        bottom.add(new JButton("Update"));
+        bottom.add(new JButton("Delete"));
 
-        form.add(new JLabel("Course Title"));
-        form.add(titleField);
-
-        form.add(new JLabel("Teacher"));
-        form.add(teacherField);
-
-        form.add(new JLabel("Schedule"));
-        form.add(scheduleField);
-
-        JButton addBtn = new JButton("Add Course");
-        JButton removeBtn = new JButton("Remove Course");
-
-        form.add(addBtn);
-        form.add(removeBtn);
-
-        add(form, BorderLayout.SOUTH);
-
-        addBtn.addActionListener(e -> addCourse());
-        removeBtn.addActionListener(e -> removeCourse());
-    }
-
-    private void addCourse() {
-
-        model.addRow(new Object[]{
-                codeField.getText(),
-                titleField.getText(),
-                teacherField.getText(),
-                scheduleField.getText()
-        });
-
-        clearFields();
-    }
-
-    private void removeCourse() {
-
-        int row = table.getSelectedRow();
-
-        if (row >= 0) {
-            model.removeRow(row);
-        }
-    }
-
-    private void clearFields() {
-
-        codeField.setText("");
-        titleField.setText("");
-        teacherField.setText("");
-        scheduleField.setText("");
+        add(bottom, BorderLayout.SOUTH);
     }
 }
