@@ -2,47 +2,110 @@ package com.university.Facility;
 
 public class Book {
 
-
     // Attributes
     private String title;
     private String author;
     private int pages;
 
-    // Constructors
+    // Default Constructor
     Book() {
-        title = "No Title";
-        author = "Unknown";
-        pages = 0;
-    }
-    Book(String title, String author, int pages) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
+        try {
+            title = "No Title";
+            author = "Unknown";
+            pages = 0;
+        }
+        catch (Exception e) {
+            System.out.println("Error in default constructor: " + e.getMessage());
+        }
     }
 
-    // Setter & Getter
+    //  Constructor
+    Book(String title, String author, int pages) {
+
+        try {
+            if(title == null || title.trim().isEmpty()) {
+                throw new Exception("Title cannot be empty");
+            }
+
+            if(author == null || author.trim().isEmpty()) {
+                throw new Exception("Author cannot be empty");
+            }
+
+            if(pages <= 0) {
+                throw new Exception("Pages must be greater than 0");
+            }
+
+            this.title = title;
+            this.author = author;
+            this.pages = pages;
+        }
+
+        catch(Exception e) {
+            System.out.println("Constructor Error: " + e.getMessage());
+        }
+    }
+
+    // Setters
     public void setTitle(String title) {
-        this.title = title;
+
+        try {
+            if(title == null || title.trim().isEmpty()) {
+                throw new Exception("Title cannot be empty");
+            }
+
+            this.title = title;
+        }
+
+        catch(Exception e) {
+            System.out.println("Error in setTitle: " + e.getMessage());
+        }
     }
+
     public void setAuthor(String author) {
-        this.author = author;
+
+        try {
+            if(author == null || author.trim().isEmpty()) {
+                throw new Exception("Author cannot be empty");
+            }
+
+            this.author = author;
+        }
+
+        catch(Exception e) {
+            System.out.println("Error in setAuthor: " + e.getMessage());
+        }
     }
+
     public void setPages(int pages) {
-        this.pages = pages;
+
+        try {
+            if(pages <= 0) {
+                throw new Exception("Pages must be greater than 0");
+            }
+
+            this.pages = pages;
+        }
+
+        catch(Exception e) {
+            System.out.println("Error in setPages: " + e.getMessage());
+        }
     }
+
+    // Getters
     public String getTitle() {
         return title;
     }
+
     public String getAuthor() {
         return author;
     }
+
     public int getPages() {
         return pages;
     }
 
-
-    // toString method
-    public String toString(){
-        return title + " " + " " + author + " " + " " + pages;
+    // toString
+    public String toString() {
+        return title + " " + author + " " + pages;
     }
 }
