@@ -1,75 +1,34 @@
 package com.university;
+import
+import com.university.Facility.*;
+import com.university.ServiceUnit.*;
 
-import com.university.core.Facility;
-import com.university.core.ServiceUnit;
+import com.sun.jdi.connect.spi.TransportService;
+import com.university.Facility.Cafeteria;
+import com.university.Facility.Library;
+import com.university.ServiceUnit.SecurityService;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+public class CampusZone {
+        Library library;
+        Cafeteria cafeteria;
 
-public class CampusZone implements Serializable {
+        TransportService transport;
+        SecurityService security;
 
-    private String zoneName;
-    private  ArrayList<Facility> facilities = new ArrayList<>();
-    private ArrayList<ServiceUnit> services = new ArrayList<>();
+        CampusZone(){
+            library = null;
+            cafeteria = null;
+            transport = null;
+            security = null;
 
-    public CampusZone(String zoneName) {
-        this.zoneName = zoneName;
-    }
-
-    public void addFacility(Facility f) {
-        facilities.add(f);
-    }
-
-    public void addService(ServiceUnit s) {
-        services.add(s);
-    }
-
-    public void removeFacility(int id) {
-        for(int i = 0; i < facilities.size();i++){
-            if(facilities.get(i).getID() == id){
-                facilities.remove(i);
-                return;
-            }
-        }
-    }
-
-    public void removeService(int id) {
-        for(int i = 0; i < services.size(); i++){
-            if(services.get(i).getID() == id){
-                services.remove(i);
-                return;
-            }
-        }
-    }
-
-    public double calculateOperationalCost() {
-        double total = 0;
-
-        for (Facility f : facilities) {
-            total += f.calculateOperationalCost();
         }
 
-        for (ServiceUnit s : services) {
-            total += s.calculateOperationalCost();
+        CampusZone(Library library, Cafeteria cafeteria,TransportService transport,SecurityService security)
+        {
+            this.library = library;
+            this.cafeteria = cafeteria;
+            this.transport = transport;
+            this.security = security;
         }
-        return total;
-    }
-
-
-    public String getZoneName() {
-        return zoneName;
-    }
-
-    public ArrayList<Facility> getFacilities() {
-        return facilities;
-    }
-
-    public ArrayList<ServiceUnit> getServices() {
-        return services;
-    }
-
-    @Override
-    public String toString() {
-        return "Zone: " + zoneName + "\nFacilities: " + facilities.size() + "\nServices: " + services.size() + "\nTotal Cost: " + calculateOperationalCost();
-    }
+        
 }

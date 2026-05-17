@@ -4,26 +4,45 @@ package com.university.core;
 import com.university.AcademicUnit.Equipment;
 import java.util.ArrayList;
 
-
 public abstract class AcademicUnit extends CampusEntity {
 
-        // Attributes
-        protected int establishedYear;
-        protected String head;
-        ArrayList<Equipment> equipments = new ArrayList<>();
-        protected int numberOfStudents;
+    protected int establishedYear;
+    protected String head;
+    ArrayList<Equipment> equipments = new ArrayList<>();
+    protected int numberOfStudents;
 
-        // Constructor
-        public AcademicUnit(){}
-        public AcademicUnit(int entityID, String name, String location, int numberOfStudents){
-            super(entityID, name, location);
+    // Constructors
+    public AcademicUnit(){}
+
+    public AcademicUnit(int entityID, String name,
+                        String location, int numberOfStudents) {
+
+        super(entityID, name, location);
+
+        try {
+
+            if(numberOfStudents < 0){
+                System.out.println("Number of students cannot be negative");
+            }
+
             this.numberOfStudents = numberOfStudents;
+
         }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+
+            this.numberOfStudents = 0;
+        }
+    }
 
 
-        // Method calculateOperationalCost()
-        protected double calculateOperationalCost(){
-            double cost = 0;
+
+    protected double calculateOperationalCost(){
+
+        double cost = 0;
+
+        try{
+
             for(Equipment e : equipments){
 
                 if(e == null){
@@ -49,4 +68,4 @@ public abstract class AcademicUnit extends CampusEntity {
         return establishedYear + " " + head;
     }
 
-    }
+}

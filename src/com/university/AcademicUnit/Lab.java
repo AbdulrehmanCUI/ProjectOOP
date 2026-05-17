@@ -1,8 +1,6 @@
 package com.university.AcademicUnit;
 
-import java.io.Serializable;
-
-public class Lab implements Serializable {
+public class Lab {
 
     // Attributes
     private String labName;

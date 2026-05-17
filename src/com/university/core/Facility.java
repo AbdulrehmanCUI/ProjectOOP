@@ -22,6 +22,7 @@ public abstract class Facility extends CampusEntity {
         return maintenanceCost + (totalFacilityUsage * 10);
     }
 
+
     // toString()
     public String toString(){
         return capacity + " " + " " + maintenanceCost;
