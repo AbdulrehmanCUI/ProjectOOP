@@ -50,8 +50,8 @@ public class TransportService implements Schedulable {
             this.busNo = busNo;
         }
 
-    @Override
-    public void generateSchedule() {
+        @Override
+        public void generateSchedule() {
 
     }
 }
