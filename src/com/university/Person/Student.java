@@ -40,4 +40,9 @@ public class Student implements Identifiable, Serializable {
     public int getID() {
         return id;
     }
+    @Override
+    public String toString() {
+        return "Name " + name + ", ID: " + id + ", Department: " + department; }
+}
+
 }
