@@ -65,13 +65,7 @@ public class TransportService implements Schedulable {
             return  "Transport Schedule: " + "\n" + "Bus Number: " + busNo + "\nRoute: " + route + "\nTime: " + timing;
         }
 
-//        public String toString(){
-//            System.out.println("Transport Schedule");
-//            System.out.println("Bus Number: " + busNo);
-//            System.out.println("Route: " + route);
-//            System.out.println("Time: " + timing);
-//
-//        }
-}
+        }
+
 
 
