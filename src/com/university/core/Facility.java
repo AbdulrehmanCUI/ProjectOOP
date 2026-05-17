@@ -16,7 +16,8 @@ public abstract class Facility extends CampusEntity {
         this.maintenanceCost = maintenanceCost;
         totalFacilityUsage++;
     }
-    // Abstract method | override krna
+
+    // Abstract method
     public double calculateOperationalCost(){
         return maintenanceCost + (totalFacilityUsage * 10);
     }
