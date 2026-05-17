@@ -36,10 +36,13 @@ public class Course implements Schedulable, Serializable {
     public String getCourseName() {
         return courseName;
     }
-
     public int getCreditHours() {
         return creditHours;
     }
+    public Classroom getClassroom(){
+        return classroom;
+    }
+
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
