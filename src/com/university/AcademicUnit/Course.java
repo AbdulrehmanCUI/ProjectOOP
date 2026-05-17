@@ -94,6 +94,7 @@ public class Course implements Schedulable, Serializable {
 
         String schedule = "Course: " + courseName + "\n"
                 + "Teacher: " + teacherName + "\n"
+                + "Classroom: " + classroom + "\n"
                 + "Day: " + day + "\n"
                 + "Time: " + time + "\n"
                 + "Total Students: " + students.size();
