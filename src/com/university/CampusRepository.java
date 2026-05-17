@@ -3,6 +3,7 @@ package com.university;
 import com.university.Interfaces.Identifiable;
 import com.university.Interfaces.Repository;
 
+import javax.management.ObjectInstance;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -70,7 +71,13 @@ public class CampusRepository<T extends Identifiable> implements Repository<T>, 
 
     // Load method
     public void load(){
+        try{
+            ObjectInputStream oos = new ObjectInputStream(new FileInputStream("university.dat"));
+            list = (ArrayList<T>) oos.readObject();
 
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
