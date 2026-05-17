@@ -42,7 +42,7 @@ public abstract class AcademicUnit extends CampusEntity {
 
         return cost + (numberOfStudents * 5);
     }
-    
+
     @Override
     public String toString(){
 
