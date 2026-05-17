@@ -78,7 +78,7 @@ public class Course implements Schedulable, Serializable {
                 + "Time: " + time + "\n"
                 + "Total Students: " + students.size();
 
-        System.out.println(schedule);
+        return schedule;
     }
 }
 
