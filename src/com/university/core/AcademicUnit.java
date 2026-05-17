@@ -11,7 +11,6 @@ public abstract class AcademicUnit extends CampusEntity {
     ArrayList<Equipment> equipments = new ArrayList<>();
     protected int numberOfStudents;
 
-    // Constructors
     public AcademicUnit(){}
 
     public AcademicUnit(int entityID, String name,
@@ -34,7 +33,6 @@ public abstract class AcademicUnit extends CampusEntity {
             this.numberOfStudents = 0;
         }
     }
-
 
 
     protected double calculateOperationalCost(){
@@ -61,6 +59,7 @@ public abstract class AcademicUnit extends CampusEntity {
 
         return cost + (numberOfStudents * 5);
     }
+
 
     @Override
     public String toString(){

@@ -22,17 +22,47 @@ public class Course implements Schedulable, Serializable {
     // Constructors
     public Course (){
     }
+
     public Course(String courseCode, String courseName, int creditHours) {
-        this.courseCode = courseCode;
-        this.courseName = courseName;
-        this.creditHours = creditHours;
-        totalCourse++;
+
+        try{
+
+            if(courseCode == null || courseCode.isEmpty()){
+                throw new Exception("Course code cannot be empty");
+            }
+
+            if(courseName == null || courseName.isEmpty()){
+                throw new Exception("Course name cannot be empty");
+            }
+
+            if(creditHours <= 0){
+                throw new Exception("Invalid credit hours");
+            }
+
+            this.courseCode = courseCode;
+            this.courseName = courseName;
+            this.creditHours = creditHours;
+
+            totalCourse++;
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+
+            this.courseCode = "Unknown";
+            this.courseName = "Unknown";
+            this.creditHours = 0;
+        }
     }
 
+
     // Getters & Setters
+
     public String getCourseCode() {
         return courseCode;
     }
+
     public String getCourseName() {
         return courseName;
     }
@@ -44,54 +74,123 @@ public class Course implements Schedulable, Serializable {
     public int getCreditHours() {
         return creditHours;
     }
+
+
     public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+
+        try{
+
+            if(courseCode == null || courseCode.isEmpty()){
+                throw new Exception("Invalid course code");
+            }
+
+            this.courseCode = courseCode;
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+        }
     }
+
+
     public void setCourseName(String courseName) {
-        this.courseName = courseName;
+
+        try{
+
+            if(courseName == null || courseName.isEmpty()){
+                throw new Exception("Invalid course name");
+            }
+
+            this.courseName = courseName;
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+        }
     }
+
+
     public void setCreditHours(int creditHours) {
-        this.creditHours = creditHours;
+
+        try{
+
+            if(creditHours <= 0){
+                throw new Exception("Invalid credit hours");
+            }
+
+            this.creditHours = creditHours;
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+        }
     }
 
 
     // Overridden toString()
+
     @Override
     public String toString(){
-        return "Course code " +courseCode + " " + "Name" + courseName + " " + "Credit hours:" + creditHours;
+
+        return "Course code "
+                + courseCode + " " + "Name " + courseName + " " + "Credit hours:" + creditHours;
     }
 
-    public String generateSchedule(ArrayList<Classroom> classrooms) {
 
-        if (classrooms == null || classrooms.isEmpty()) {
-            return "No Slot Available";
+
+    public String generateSchedule(
+            ArrayList<Classroom> classrooms) {
+
+        try{
+
+            if(classrooms == null || classrooms.isEmpty()){
+
+                throw new Exception("No classroom available");
+            }
+
+
+            for(Classroom c : classrooms){
+
+                if(c != null && c.isAvailable()){
+
+                    this.classroom = c;
+                    return "Scheduled";
+                }
+            }
+
         }
 
-        for (Classroom c : classrooms) {
+        catch(Exception e){
 
-            if (c != null && c.isAvailable()) {
-
-                this.classroom = c;
-
-                // optional: reserve slot if you use slot tracking
-                // c.addOccupiedSlot("ASSIGNED");
-
-                return "Scheduled";
-            }
+            System.out.println(e.getMessage());
         }
 
         return "No Slot Available";
     }
 
+
+
     @Override
     public String generateSchedule() {
 
+        try{
 
-        String schedule = "Course: " + courseName + "\n"
-                + "Teacher: " + teacherName + "\n"
-                + "Day: " + day + "\n"
-                + "Time: " + time + "\n"
-                + "Total Students: " + students.size();
+            if(teacherName == null || day == null || time == null){
+                throw new Exception("Schedule data missing");
+            }
+
+        }
+
+        catch(Exception e){
+
+            return e.getMessage();
+        }
+
+
+        String schedule = "Course: " + courseName + "\n" + "Teacher: " + teacherName + "\n" + "Day: " + day + "\n" + "Time: " + time + "\n" + "Total Students: " + students.size();
 
         return schedule;
     }

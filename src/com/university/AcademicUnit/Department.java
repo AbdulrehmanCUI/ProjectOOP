@@ -17,37 +17,111 @@ public class Department extends AcademicUnit implements Reportable, Serializable
     private ArrayList<Student> students = new ArrayList<>();
     private ArrayList<Assignment> assignments = new ArrayList<>();
 
+
     public Department() {}
 
     public Department(String deptName, String hodName, int totalStudents) {
-        this.deptName = deptName;
-        this.hodName = hodName;
-        this.totalStudents = totalStudents;
+
+        try{
+
+            if(deptName == null || deptName.isEmpty()){
+                throw new Exception("Department name cannot be empty");
+            }
+
+            if(hodName == null || hodName.isEmpty()){
+                throw new Exception("HOD name cannot be empty");
+            }
+
+            if(totalStudents < 0){
+                throw new Exception("Invalid student count");
+            }
+
+            this.deptName = deptName;
+            this.hodName = hodName;
+            this.totalStudents = totalStudents;
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+
+            this.deptName = "Unknown";
+            this.hodName = "Unknown";
+            this.totalStudents = 0;
+        }
     }
+
+
+    // Getters
 
     public String getDeptName() {
         return deptName;
-    }
-
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
     }
 
     public String getHodName() {
         return hodName;
     }
 
-    public void setHodName(String hodName) {
-        this.hodName = hodName;
-    }
-
     public int getTotalStudents() {
         return totalStudents;
     }
 
-    public void setTotalStudents(int totalStudents) {
-        this.totalStudents = totalStudents;
+
+    // Setters
+
+    public void setDeptName(String deptName) {
+
+        try{
+
+            if(deptName == null || deptName.isEmpty()){
+                throw new Exception("Invalid department name");
+            }
+
+            this.deptName = deptName;
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+        }
     }
+
+
+    public void setHodName(String hodName) {
+
+        try{
+
+            if(hodName == null || hodName.isEmpty()){
+                throw new Exception("Invalid HOD name");
+            }
+
+            this.hodName = hodName;
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public void setTotalStudents(int totalStudents) {
+
+        try{
+
+            if(totalStudents < 0){
+                throw new Exception("Student count cannot be negative");
+            }
+
+            this.totalStudents = totalStudents;
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     // calculateOperationalCost
     @Override
@@ -56,7 +130,6 @@ public class Department extends AcademicUnit implements Reportable, Serializable
     }
 
 
-    // Implemented generateReport from Reportable
     @Override
     public String generateReport() {
         return "Department Students: " + totalStudents;
@@ -72,34 +145,56 @@ public class Department extends AcademicUnit implements Reportable, Serializable
 
     // Add Course
     public void addCourse(Course c) {
-        courses.add(c);
+
+        try{
+
+            if(c == null){
+                throw new Exception("Course cannot be null");
+            }
+
+            courses.add(c);
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
+        }
     }
 
 
     // Handle Classroom Availability
     public void handleClassroomUnavailable(Classroom classroom) {
 
-        if (classroom == null) {
-            System.out.println("Invalid classroom");
-            return;
-        }
-        System.out.println("Classroom " + classroom.getRoomNo() + " is now unavailable. Rescheduling affected courses...");
+        try{
 
-        classroom.markUnavailable();
+            if(classroom == null){
+                throw new Exception("Invalid classroom");
+            }
 
+            System.out.println("Classroom " + classroom.getRoomNo() + " is now unavailable. Rescheduling affected courses...");
 
-        for (Course course : courses) {
-            if (course.getClassroom() == classroom) {
-                System.out.println("Rescheduling: " + course.getCourseName());
+            classroom.markUnavailable();
 
-                String result = course.generateSchedule();
+            for (Course course : courses) {
 
-                if (result.equals("No Slot Available")) {
-                    System.out.println("WARNING: Could not reschedule " + course.getCourseName());
+                if (course.getClassroom() == classroom) {
+
+                    System.out.println("Rescheduling: " + course.getCourseName());
+
+                    String result = course.generateSchedule();
+
+                    if (result.equals("No Slot Available")) {
+
+                        System.out.println("WARNING: Could not reschedule " + course.getCourseName());
+                    }
                 }
             }
+
+        }
+
+        catch(Exception e){
+
+            System.out.println(e.getMessage());
         }
     }
 }
-
-
