@@ -80,7 +80,7 @@ public class Course implements Schedulable, Serializable {
     }
 
     @Override
-    public void generateSchedule() {
+    public String generateSchedule() {
 
 
         String schedule = "Course: " + courseName + "\n"
@@ -89,6 +89,6 @@ public class Course implements Schedulable, Serializable {
                 + "Time: " + time + "\n"
                 + "Total Students: " + students.size();
 
-        System.out.println(schedule);
+        return schedule;
     }
 }
