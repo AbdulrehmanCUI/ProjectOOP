@@ -1,8 +1,9 @@
 package com.university.Facility;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Library {
+public class Library implements Serializable {
 
     // Attributes
     private String librarian;

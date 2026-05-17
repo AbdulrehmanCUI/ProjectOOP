@@ -1,6 +1,8 @@
 package com.university.Facility;
 
-public class Cafeteria {
+import java.io.Serializable;
+
+public class Cafeteria implements Serializable {
 
     // Attribute
     private String menu;

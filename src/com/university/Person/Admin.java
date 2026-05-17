@@ -1,5 +1,4 @@
 package com.university.Person;
 
-public class Admin
-{
+public class Admin {
 }
