@@ -1,7 +1,12 @@
 package com.university.ServiceUnit;
 import com.university.Interfaces.Schedulable;
 
-import java.io.Serializable;
+public class TransportService implements Schedulable {
+
+        private String route;
+        private String alternativeRoute;
+        private String timing;
+        private int busNo;
 
 
             this.route = route;
