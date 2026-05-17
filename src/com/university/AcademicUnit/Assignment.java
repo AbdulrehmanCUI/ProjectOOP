@@ -38,7 +38,7 @@ public class Assignment {
     }
     @Override
     public String toString(){
-        return title + " " + " " + marks + " " + " " + deadline;
+        return "Title" +title + " " + "Marks:" + marks + " " + "Deadline:" + deadline;
     }
 }
 
