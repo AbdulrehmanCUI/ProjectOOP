@@ -25,6 +25,11 @@ public abstract class AcademicUnit extends CampusEntity {
         protected double calculateOperationalCost(){
             double cost = 0;
             for(Equipment e : equipments){
+
+                if(e == null){
+                   System.out.println("Equipment object is missing");
+                }
+
                 cost += e.getOperationalCost();
             }
 
