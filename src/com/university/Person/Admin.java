@@ -1,14 +1,11 @@
 package com.university.Person;
 
-public class Admin
-{
+public class Admin{
     private String role;
     private String office;
     private double salary;
 
-    Admin(String name,int age,String id,
-          String role,String office,double salary)
-    {
+    Admin(String name,int age,String id, String role,String office,double salary) {
         this.role = role;
         this.office = office;
         this.salary = salary;
