@@ -27,13 +27,19 @@ public abstract class AcademicUnit extends CampusEntity {
             for(Equipment e : equipments){
                 cost += e.getOperationalCost();
             }
-            return cost + (numberOfStudents * 5);
+
         }
 
-        // toString method
-        public String toString(){
-            return establishedYear + " " + " " + head;
+        catch(NullPointerException e){
+
+            System.out.println(e.getMessage());
+        }
+
+        return cost + (numberOfStudents * 5);
     }
+    
+    @Override
+    public String toString(){
 
 
     }
