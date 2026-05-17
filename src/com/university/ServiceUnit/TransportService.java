@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class TransportService implements Schedulable, Serializable {
 
     @Override
-    public void generateSchedule() {
+    public String generateSchedule() {
 
     }
 }

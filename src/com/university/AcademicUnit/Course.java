@@ -58,31 +58,20 @@ public class Course implements Schedulable, Serializable {
     }
 
     public String generateSchedule(ArrayList<Classroom> classrooms) {
-
         if (classrooms == null || classrooms.isEmpty()) {
             return "No Slot Available";
         }
-
         for (Classroom c : classrooms) {
-
             if (c != null && c.isAvailable()) {
-
                 this.classroom = c;
-
-                // optional: reserve slot if you use slot tracking
-                // c.addOccupiedSlot("ASSIGNED");
-
                 return "Scheduled";
             }
         }
-
         return "No Slot Available";
     }
 
     @Override
-    public void generateSchedule() {
-
-
+    public String generateSchedule() {
         String schedule = "Course: " + courseName + "\n"
                 + "Teacher: " + teacherName + "\n"
                 + "Day: " + day + "\n"
@@ -92,3 +81,12 @@ public class Course implements Schedulable, Serializable {
         System.out.println(schedule);
     }
 }
+
+
+
+
+
+
+
+
+
