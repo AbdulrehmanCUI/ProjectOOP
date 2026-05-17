@@ -51,7 +51,7 @@ public class TransportService implements Schedulable {
         }
 
         @Override
-        public void generateSchedule() {
+        public String generateSchedule() {
 
             if(timing.equals("8:00 AM")) {
 
