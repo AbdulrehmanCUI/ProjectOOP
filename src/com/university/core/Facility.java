@@ -7,8 +7,19 @@ public abstract class Facility extends CampusEntity {
     protected static int totalFacilityUsage = 0;
 
 
-    // Abstract method
-    public abstract double calculateOperationalCost();
+    // Constructor
+    public Facility(){
+        totalFacilityUsage++;
+    }
+    public Facility(int entityID, String name, String location, double maintenanceCost){
+        super(entityID, name, location);
+        this.maintenanceCost = maintenanceCost;
+        totalFacilityUsage++;
+    }
+    // Abstract method | override krna
+    public double calculateOperationalCost(){
+        return maintenanceCost + (totalFacilityUsage * 10);
+    }
 
     // toString()
     public String toString(){

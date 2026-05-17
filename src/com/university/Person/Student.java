@@ -26,6 +26,9 @@ public class Student implements Identifiable, Serializable {
     public String getDepartment() {
         return department;
     }
+    public static int getTotalStudent() {
+        return totalStudent;
+    }
 
 
     // Setters
@@ -36,13 +39,16 @@ public class Student implements Identifiable, Serializable {
         this.department = department;
     }
 
+
     @Override
     public int getID() {
         return id;
     }
+
+
     @Override
     public String toString() {
         return "Name " + name + ", ID: " + id + ", Department: " + department; }
-}
 
 }
+

@@ -1,6 +1,8 @@
 package com.university.Person;
 
-public class Teacher {
+import java.io.Serializable;
+
+public class Teacher implements Serializable{
     private String subject;
     private String department;
     private double salary;
