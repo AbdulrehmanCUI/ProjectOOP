@@ -13,63 +13,117 @@ public class CampusZone implements Serializable {
     private ArrayList<ServiceUnit> services = new ArrayList<>();
 
     public CampusZone(String zoneName) {
-        this.zoneName = zoneName;
+        try{
+            this.zoneName = zoneName;
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void addFacility(Facility f) {
-        facilities.add(f);
+        try{
+            facilities.add(f);
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void addService(ServiceUnit s) {
-        services.add(s);
+        try{
+            services.add(s);
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void removeFacility(int id) {
-        for(int i = 0; i < facilities.size();i++){
-            if(facilities.get(i).getID() == id){
-                facilities.remove(i);
-                return;
+        try{
+            for(int i = 0; i < facilities.size();i++){
+                if(facilities.get(i).getID() == id){
+                    facilities.remove(i);
+                    return;
+                }
             }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
+
 
     public void removeService(int id) {
-        for(int i = 0; i < services.size(); i++){
-            if(services.get(i).getID() == id){
-                services.remove(i);
-                return;
+        try {
+            for(int i = 0; i < services.size(); i++){
+                if(services.get(i).getID() == id){
+                    services.remove(i);
+                    return;
+                }
             }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
+
 
     public double calculateOperationalCost() {
-        double total = 0;
+        try{
+            double total = 0;
 
-        for (Facility f : facilities) {
-            total += f.calculateOperationalCost();
+            for (Facility f : facilities) {
+                total += f.calculateOperationalCost();
+            }
+            for (ServiceUnit s : services) {
+                total += s.calculateOperationalCost();
+            }
+
+            return total;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
-        for (ServiceUnit s : services) {
-            total += s.calculateOperationalCost();
-        }
-        return total;
+        return 0;
     }
+
 
 
 
     public String getZoneName() {
-        return zoneName;
+        try{
+            return zoneName;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
+
     public ArrayList<Facility> getFacilities() {
-        return facilities;
+        try{
+            return facilities;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     public ArrayList<ServiceUnit> getServices() {
-        return services;
+        try{
+            return services;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
+
 
     @Override
     public String toString() {
-        return "Zone: " + zoneName + "\nFacilities: " + facilities.size() + "\nServices: " + services.size() + "\nTotal Cost: " + calculateOperationalCost();
+        try{
+            return "Zone: " + zoneName + "\nFacilities: " + facilities.size() + "\nServices: " + services.size() + "\nTotal Cost: " + calculateOperationalCost();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return "";
     }
 }
