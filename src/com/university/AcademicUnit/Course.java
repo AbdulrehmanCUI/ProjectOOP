@@ -37,6 +37,10 @@ public class Course implements Schedulable, Serializable {
         return courseName;
     }
 
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
     public int getCreditHours() {
         return creditHours;
     }
