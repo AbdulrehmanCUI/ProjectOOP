@@ -2,10 +2,16 @@ package com.university;
 
 import com.university.GUI.LoginFrame;
 
+import javax.swing.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        new LoginFrame();
+        SwingUtilities.invokeLater(() -> {
+
+            LoginFrame loginFrame = new LoginFrame();
+            loginFrame.setVisible(true);
+        });
     }
 }
