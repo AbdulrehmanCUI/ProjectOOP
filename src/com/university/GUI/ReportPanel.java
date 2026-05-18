@@ -1,5 +1,7 @@
 package com.university.GUI;
 
+import com.university.data.DataStore;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,30 +11,25 @@ public class ReportPanel extends JPanel {
 
         setLayout(new BorderLayout());
 
-        JLabel heading = new JLabel(
-                "University Reports",
-                SwingConstants.CENTER
-        );
+        JTextArea reportArea = new JTextArea();
+        reportArea.setEditable(false);
 
-        heading.setFont(new Font("Arial", Font.BOLD, 30));
+        StringBuilder report = new StringBuilder();
 
-        add(heading, BorderLayout.NORTH);
+        report.append("===== UNIVERSITY REPORT ===== ");
 
-        JTextArea area = new JTextArea();
-        area.setFont(new Font("Monospaced", Font.PLAIN, 18));
+                report.append("Total Students: ")
+                        .append(DataStore.getInstance()
+                                .getStudents().size())
+                        .append(" ");
 
-        area.setText(
-                "===== UNIVERSITY REPORT =====\n\n" +
-                        "Total Students : 1250\n" +
-                        "Total Courses  : 45\n" +
-                        "Total Faculty  : 85\n" +
-                        "Library Usage  : HIGH\n" +
-                        "Transport      : ACTIVE\n" +
-                        "Security Status: STABLE\n\n" +
-                        "Performance Summary:\n" +
-                        "The university system is functioning normally."
-        );
+                                report.append("Total Courses: ")
+                                        .append(DataStore.getInstance()
+                                                .getCourses().size())
+                                        .append(" ");
 
-        add(new JScrollPane(area), BorderLayout.CENTER);
+                                                reportArea.setText(report.toString());
+
+        add(new JScrollPane(reportArea), BorderLayout.CENTER);
     }
 }

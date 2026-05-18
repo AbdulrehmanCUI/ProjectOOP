@@ -5,6 +5,7 @@ import com.university.Person.Student;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Course implements Schedulable, Serializable {
 
@@ -27,7 +28,11 @@ public class Course implements Schedulable, Serializable {
 
     private String time;
 
-    private ArrayList<Student> students;
+    /*
+     * PROPER ENCAPSULATION
+     */
+    private final List<Student> students =
+            new ArrayList<>();
 
     /*
      * STATIC MEMBER
@@ -39,7 +44,7 @@ public class Course implements Schedulable, Serializable {
      */
     public Course() {
 
-        students = new ArrayList<>();
+        totalCourse++;
     }
 
     /*
@@ -49,8 +54,6 @@ public class Course implements Schedulable, Serializable {
             String courseCode,
             String courseName,
             int creditHours) {
-
-        students = new ArrayList<>();
 
         try {
 
@@ -108,13 +111,14 @@ public class Course implements Schedulable, Serializable {
             String instructor,
             String schedule) {
 
-        students = new ArrayList<>();
+        this.courseCode =
+                String.valueOf(courseId);
 
-        this.courseCode = String.valueOf(courseId);
+        this.courseName =
+                courseName;
 
-        this.courseName = courseName;
-
-        this.teacherName = instructor;
+        this.teacherName =
+                instructor;
 
         /*
          * EXTRACT DAY/TIME
@@ -166,7 +170,11 @@ public class Course implements Schedulable, Serializable {
         return time;
     }
 
-    public ArrayList<Student> getStudents() {
+    /*
+     * SAFE COLLECTION GETTER
+     */
+    public List<Student> getStudents() {
+
         return students;
     }
 
@@ -180,13 +188,16 @@ public class Course implements Schedulable, Serializable {
 
             return Integer.parseInt(courseCode);
 
-        } catch(Exception e) {
+        }
+
+        catch(Exception e) {
 
             return 0;
         }
     }
 
     public String getInstructor() {
+
         return teacherName;
     }
 
@@ -199,7 +210,8 @@ public class Course implements Schedulable, Serializable {
      * SETTERS
      */
 
-    public void setCourseCode(String courseCode) {
+    public void setCourseCode(
+            String courseCode) {
 
         try {
 
@@ -216,11 +228,14 @@ public class Course implements Schedulable, Serializable {
 
         catch(Exception e) {
 
-            System.out.println(e.getMessage());
+            System.out.println(
+                    e.getMessage()
+            );
         }
     }
 
-    public void setCourseName(String courseName) {
+    public void setCourseName(
+            String courseName) {
 
         try {
 
@@ -237,11 +252,14 @@ public class Course implements Schedulable, Serializable {
 
         catch(Exception e) {
 
-            System.out.println(e.getMessage());
+            System.out.println(
+                    e.getMessage()
+            );
         }
     }
 
-    public void setCreditHours(int creditHours) {
+    public void setCreditHours(
+            int creditHours) {
 
         try {
 
@@ -257,11 +275,14 @@ public class Course implements Schedulable, Serializable {
 
         catch(Exception e) {
 
-            System.out.println(e.getMessage());
+            System.out.println(
+                    e.getMessage()
+            );
         }
     }
 
-    public void setTeacherName(String teacherName) {
+    public void setTeacherName(
+            String teacherName) {
 
         this.teacherName = teacherName;
     }
@@ -276,7 +297,8 @@ public class Course implements Schedulable, Serializable {
         this.time = time;
     }
 
-    public void setClassroom(Classroom classroom) {
+    public void setClassroom(
+            Classroom classroom) {
 
         this.classroom = classroom;
     }
@@ -285,7 +307,8 @@ public class Course implements Schedulable, Serializable {
      * STUDENT MANAGEMENT
      */
 
-    public void addStudent(Student student) {
+    public void addStudent(
+            Student student) {
 
         if(student != null &&
                 !students.contains(student)) {
@@ -294,7 +317,8 @@ public class Course implements Schedulable, Serializable {
         }
     }
 
-    public void removeStudent(Student student) {
+    public void removeStudent(
+            Student student) {
 
         students.remove(student);
     }
@@ -332,7 +356,9 @@ public class Course implements Schedulable, Serializable {
 
         catch(Exception e) {
 
-            System.out.println(e.getMessage());
+            System.out.println(
+                    e.getMessage()
+            );
         }
 
         return "No Slot Available";
@@ -374,9 +400,11 @@ public class Course implements Schedulable, Serializable {
      * CONFLICT DETECTION
      */
 
-    public boolean conflictsWith(Course other) {
+    public boolean conflictsWith(
+            Course other) {
 
         if(other == null) {
+
             return false;
         }
 
@@ -392,10 +420,14 @@ public class Course implements Schedulable, Serializable {
                 );
 
         boolean sameDay =
-                this.day.equals(other.day);
+                this.day.equals(
+                        other.day
+                );
 
         boolean sameTime =
-                this.time.equals(other.time);
+                this.time.equals(
+                        other.time
+                );
 
         return sameRoom &&
                 sameDay &&
@@ -418,8 +450,11 @@ public class Course implements Schedulable, Serializable {
     @Override
     public String toString() {
 
-        return "Course Code: " + courseCode +
-                " | Name: " + courseName +
-                " | Credit Hours: " + creditHours;
+        return "Course Code: "
+                + courseCode
+                + " | Name: "
+                + courseName
+                + " | Credit Hours: "
+                + creditHours;
     }
 }

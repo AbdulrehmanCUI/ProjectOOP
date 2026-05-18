@@ -2,7 +2,6 @@ package com.university.GUI;
 
 import com.university.AcademicUnit.Course;
 import com.university.Person.SessionManager;
-import com.university.data.DataStore;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
