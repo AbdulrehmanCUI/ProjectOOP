@@ -1,66 +1,142 @@
 package com.university.AcademicUnit;
+
 import com.university.Interfaces.Schedulable;
 import com.university.Person.Student;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
 public class Course implements Schedulable, Serializable {
 
-    // Attributes
+    private static final long serialVersionUID = 1L;
+
+    /*
+     * ATTRIBUTES
+     */
     private String courseCode;
+
     private String courseName;
+
     private int creditHours;
+
     private Classroom classroom;
+
     private String teacherName;
+
     private String day;
+
     private String time;
-    private ArrayList<Student> students = new ArrayList<>();
+
+    private ArrayList<Student> students;
+
+    /*
+     * STATIC MEMBER
+     */
     protected static int totalCourse = 0;
 
-    // Constructors
-    public Course (){
+    /*
+     * DEFAULT CONSTRUCTOR
+     */
+    public Course() {
+
+        students = new ArrayList<>();
     }
 
-    public Course(String courseCode, String courseName, int creditHours) {
+    /*
+     * MAIN CONSTRUCTOR
+     */
+    public Course(
+            String courseCode,
+            String courseName,
+            int creditHours) {
 
-        try{
+        students = new ArrayList<>();
 
-            if(courseCode == null || courseCode.isEmpty()){
-                throw new Exception("Course code cannot be empty");
+        try {
+
+            if(courseCode == null ||
+                    courseCode.trim().isEmpty()) {
+
+                throw new Exception(
+                        "Course code cannot be empty"
+                );
             }
 
-            if(courseName == null || courseName.isEmpty()){
-                throw new Exception("Course name cannot be empty");
+            if(courseName == null ||
+                    courseName.trim().isEmpty()) {
+
+                throw new Exception(
+                        "Course name cannot be empty"
+                );
             }
 
-            if(creditHours <= 0){
-                throw new Exception("Invalid credit hours");
+            if(creditHours <= 0) {
+
+                throw new Exception(
+                        "Invalid credit hours"
+                );
             }
 
             this.courseCode = courseCode;
+
             this.courseName = courseName;
+
             this.creditHours = creditHours;
 
             totalCourse++;
+
         }
 
-        catch(Exception e){
+        catch(Exception e) {
 
             System.out.println(e.getMessage());
 
-            this.courseCode = "Unknown";
-            this.courseName = "Unknown";
+            this.courseCode = "UNKNOWN";
+
+            this.courseName = "UNKNOWN";
+
             this.creditHours = 0;
         }
     }
 
-    public Course(int courseId, String courseName, String instructor, String schedule) {
+    /*
+     * CRUD CONSTRUCTOR
+     */
+    public Course(
+            int courseId,
+            String courseName,
+            String instructor,
+            String schedule) {
+
+        students = new ArrayList<>();
+
+        this.courseCode = String.valueOf(courseId);
+
+        this.courseName = courseName;
+
+        this.teacherName = instructor;
+
+        /*
+         * EXTRACT DAY/TIME
+         */
+        if(schedule != null &&
+                schedule.contains("-")) {
+
+            String[] parts =
+                    schedule.split("-");
+
+            if(parts.length == 2) {
+
+                this.day = parts[0];
+
+                this.time = parts[1];
+            }
+        }
     }
 
-
-    // Getters & Setters
+    /*
+     * GETTERS
+     */
 
     public String getCourseCode() {
         return courseCode;
@@ -70,103 +146,191 @@ public class Course implements Schedulable, Serializable {
         return courseName;
     }
 
-    public Classroom getClassroom() {
-        return classroom;
-    }
-
     public int getCreditHours() {
         return creditHours;
     }
 
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    /*
+     * REQUIRED FOR CoursePanel
+     */
+
+    public int getCourseId() {
+
+        try {
+
+            return Integer.parseInt(courseCode);
+
+        } catch(Exception e) {
+
+            return 0;
+        }
+    }
+
+    public String getInstructor() {
+        return teacherName;
+    }
+
+    public String getSchedule() {
+
+        return day + "-" + time;
+    }
+
+    /*
+     * SETTERS
+     */
 
     public void setCourseCode(String courseCode) {
 
-        try{
+        try {
 
-            if(courseCode == null || courseCode.isEmpty()){
-                throw new Exception("Invalid course code");
+            if(courseCode == null ||
+                    courseCode.trim().isEmpty()) {
+
+                throw new Exception(
+                        "Invalid course code"
+                );
             }
 
             this.courseCode = courseCode;
         }
 
-        catch(Exception e){
+        catch(Exception e) {
 
             System.out.println(e.getMessage());
         }
     }
 
-
     public void setCourseName(String courseName) {
 
-        try{
+        try {
 
-            if(courseName == null || courseName.isEmpty()){
-                throw new Exception("Invalid course name");
+            if(courseName == null ||
+                    courseName.trim().isEmpty()) {
+
+                throw new Exception(
+                        "Invalid course name"
+                );
             }
 
             this.courseName = courseName;
         }
 
-        catch(Exception e){
+        catch(Exception e) {
 
             System.out.println(e.getMessage());
         }
     }
 
-
     public void setCreditHours(int creditHours) {
 
-        try{
+        try {
 
-            if(creditHours <= 0){
-                throw new Exception("Invalid credit hours");
+            if(creditHours <= 0) {
+
+                throw new Exception(
+                        "Invalid credit hours"
+                );
             }
 
             this.creditHours = creditHours;
         }
 
-        catch(Exception e){
+        catch(Exception e) {
 
             System.out.println(e.getMessage());
         }
     }
 
+    public void setTeacherName(String teacherName) {
 
-    // Overridden toString()
-
-    @Override
-    public String toString(){
-
-        return "Course code "
-                + courseCode + " " + "Name " + courseName + " " + "Credit hours:" + creditHours;
+        this.teacherName = teacherName;
     }
 
+    public void setDay(String day) {
 
+        this.day = day;
+    }
+
+    public void setTime(String time) {
+
+        this.time = time;
+    }
+
+    public void setClassroom(Classroom classroom) {
+
+        this.classroom = classroom;
+    }
+
+    /*
+     * STUDENT MANAGEMENT
+     */
+
+    public void addStudent(Student student) {
+
+        if(student != null &&
+                !students.contains(student)) {
+
+            students.add(student);
+        }
+    }
+
+    public void removeStudent(Student student) {
+
+        students.remove(student);
+    }
+
+    /*
+     * SCHEDULING
+     */
 
     public String generateSchedule(
             ArrayList<Classroom> classrooms) {
 
-        try{
+        try {
 
-            if(classrooms == null || classrooms.isEmpty()){
+            if(classrooms == null ||
+                    classrooms.isEmpty()) {
 
-                throw new Exception("No classroom available");
+                throw new Exception(
+                        "No classrooms available"
+                );
             }
 
+            for(Classroom c : classrooms) {
 
-            for(Classroom c : classrooms){
-
-                if(c != null && c.isAvailable()){
+                if(c != null &&
+                        c.isAvailable()) {
 
                     this.classroom = c;
-                    return "Scheduled";
+
+                    return "Scheduled in "
+                            + c.getRoomNumber();
                 }
             }
 
         }
 
-        catch(Exception e){
+        catch(Exception e) {
 
             System.out.println(e.getMessage());
         }
@@ -174,27 +338,88 @@ public class Course implements Schedulable, Serializable {
         return "No Slot Available";
     }
 
-
+    /*
+     * INTERFACE METHOD
+     */
 
     @Override
     public String generateSchedule() {
 
-        try{
+        try {
 
-            if(teacherName == null || day == null || time == null){
-                throw new Exception("Schedule data missing");
+            if(teacherName == null ||
+                    day == null ||
+                    time == null) {
+
+                throw new Exception(
+                        "Schedule data missing"
+                );
             }
 
         }
 
-        catch(Exception e){
+        catch(Exception e) {
 
             return e.getMessage();
         }
 
+        return "Course: " + courseName +
+                "\nTeacher: " + teacherName +
+                "\nDay: " + day +
+                "\nTime: " + time +
+                "\nStudents: " + students.size();
+    }
 
-        String schedule = "Course: " + courseName + "\n" + "Teacher: " + teacherName + "\n" + "Day: " + day + "\n" + "Time: " + time + "\n" + "Total Students: " + students.size();
+    /*
+     * CONFLICT DETECTION
+     */
 
-        return schedule;
+    public boolean conflictsWith(Course other) {
+
+        if(other == null) {
+            return false;
+        }
+
+        if(this.classroom == null ||
+                other.classroom == null) {
+
+            return false;
+        }
+
+        boolean sameRoom =
+                this.classroom.equals(
+                        other.classroom
+                );
+
+        boolean sameDay =
+                this.day.equals(other.day);
+
+        boolean sameTime =
+                this.time.equals(other.time);
+
+        return sameRoom &&
+                sameDay &&
+                sameTime;
+    }
+
+    /*
+     * STATIC METHOD
+     */
+
+    public static int getTotalCourse() {
+
+        return totalCourse;
+    }
+
+    /*
+     * toString()
+     */
+
+    @Override
+    public String toString() {
+
+        return "Course Code: " + courseCode +
+                " | Name: " + courseName +
+                " | Credit Hours: " + creditHours;
     }
 }

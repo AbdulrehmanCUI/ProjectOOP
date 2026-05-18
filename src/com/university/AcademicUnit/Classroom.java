@@ -241,6 +241,10 @@ public class Classroom extends AcademicUnit implements Serializable {
                 + ", Capacity: " + capacity
                 + ", Available: " + available;
     }
+
+    public int getRoomNumber() {
+        return roomNo;
+    }
 }
 
 

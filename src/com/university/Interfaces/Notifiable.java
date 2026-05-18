@@ -1,5 +1,5 @@
 package com.university.Interfaces;
 
 public interface Notifiable {
-    public void sendNotification();
+    public void sendNotification(String message);
 }
