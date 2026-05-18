@@ -56,6 +56,9 @@ public class Course implements Schedulable, Serializable {
         }
     }
 
+    public Course(int courseId, String courseName, String instructor, String schedule) {
+    }
+
 
     // Getters & Setters
 

@@ -1,56 +1,367 @@
 package com.university.GUI;
 
+import com.university.AcademicUnit.Course;
+import com.university.Person.SessionManager;
+import com.university.data.DataStore;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class CoursePanel extends JPanel {
 
+    /*
+     * FORM FIELDS
+     */
+    private JTextField courseIdField;
+    private JTextField courseNameField;
+    private JTextField instructorField;
+    private JTextField scheduleField;
+
+    /*
+     * TABLE
+     */
+    private JTable table;
+    private DefaultTableModel model;
+
+    /*
+     * BUTTONS
+     */
+    private JButton addButton;
+    private JButton updateButton;
+    private JButton deleteButton;
+
     public CoursePanel() {
 
-        setLayout(new BorderLayout(15, 15));
-        setBackground(new Color(245, 247, 250));
+        setLayout(new BorderLayout(10,10));
 
-        JPanel top = new JPanel(new GridLayout(3, 4, 15, 15));
+        /*
+         * ===== FORM PANEL =====
+         */
+        JPanel formPanel = new JPanel(
+                new GridLayout(4,2,10,10)
+        );
 
-        top.setBorder(BorderFactory.createTitledBorder("Course Details"));
-
-        top.add(new JLabel("Course Code"));
-        top.add(new JTextField());
-
-        top.add(new JLabel("Title"));
-        top.add(new JTextField());
-
-        top.add(new JLabel("Teacher"));
-        top.add(new JTextField());
-
-        top.add(new JLabel("Time Slot"));
-        top.add(new JTextField());
-
-        add(top, BorderLayout.NORTH);
-
-        JTable table = new JTable(
-                new DefaultTableModel(
-                        new String[]{
-                                "Code",
-                                "Title",
-                                "Teacher",
-                                "Time"
-                        },
-                        0
+        formPanel.setBorder(
+                BorderFactory.createTitledBorder(
+                        "Course Information"
                 )
         );
 
-        table.setRowHeight(30);
+        courseIdField = new JTextField();
 
-        add(new JScrollPane(table), BorderLayout.CENTER);
+        courseNameField = new JTextField();
 
-        JPanel bottom = new JPanel();
+        instructorField = new JTextField();
 
-        bottom.add(new JButton("Add"));
-        bottom.add(new JButton("Update"));
-        bottom.add(new JButton("Delete"));
+        scheduleField = new JTextField();
 
-        add(bottom, BorderLayout.SOUTH);
+        formPanel.add(new JLabel("Course ID"));
+        formPanel.add(courseIdField);
+
+        formPanel.add(new JLabel("Course Name"));
+        formPanel.add(courseNameField);
+
+        formPanel.add(new JLabel("Instructor"));
+        formPanel.add(instructorField);
+
+        formPanel.add(new JLabel("Schedule"));
+        formPanel.add(scheduleField);
+
+        /*
+         * ===== BUTTON PANEL =====
+         */
+        JPanel buttonPanel = new JPanel();
+
+        addButton = new JButton("Add");
+
+        updateButton = new JButton("Update");
+
+        deleteButton = new JButton("Delete");
+
+        buttonPanel.add(addButton);
+
+        buttonPanel.add(updateButton);
+
+        buttonPanel.add(deleteButton);
+
+        /*
+         * ===== TABLE =====
+         */
+        model = new DefaultTableModel(
+
+                new String[]{
+                        "Course ID",
+                        "Course Name",
+                        "Instructor",
+                        "Schedule"
+                },
+
+                0
+        );
+
+        table = new JTable(model);
+
+        JScrollPane scrollPane =
+                new JScrollPane(table);
+
+        /*
+         * ===== ADD COMPONENTS =====
+         */
+        add(formPanel, BorderLayout.NORTH);
+
+        add(scrollPane, BorderLayout.CENTER);
+
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        /*
+         * ===== LOAD SAVED DATA =====
+         */
+        loadCourses();
+
+        /*
+         * ===== BUTTON ACTIONS =====
+         */
+        addButton.addActionListener(
+                e -> addCourse()
+        );
+
+        updateButton.addActionListener(
+                e -> updateCourse()
+        );
+
+        deleteButton.addActionListener(
+                e -> deleteCourse()
+        );
+
+        /*
+         * ===== ROLE-BASED ACCESS =====
+         */
+
+        /*
+         * STUDENTS CAN ONLY VIEW
+         */
+        if(SessionManager.isStudent()) {
+
+            addButton.setEnabled(false);
+
+            updateButton.setEnabled(false);
+
+            deleteButton.setEnabled(false);
+        }
+
+        /*
+         * TEACHERS CANNOT DELETE
+         */
+        if(SessionManager.isTeacher()) {
+
+            deleteButton.setEnabled(false);
+        }
+    }
+
+    /*
+     * ===== ADD COURSE =====
+     */
+    private void addCourse() {
+
+        if(!validateForm()) {
+            return;
+        }
+
+        int courseId =
+                Integer.parseInt(
+                        courseIdField.getText()
+                );
+
+        String courseName =
+                courseNameField.getText();
+
+        String instructor =
+                instructorField.getText();
+
+        String schedule =
+                scheduleField.getText();
+
+        /*
+         * CREATE COURSE OBJECT
+         */
+        Course course = new Course(courseId,
+
+                courseName,
+
+                instructor,
+
+                schedule
+        );
+
+        /*
+         * ADD TO DATASTORE
+         */
+        DataStore.getInstance()
+                .addCourse(course);
+
+        /*
+         * ADD TO TABLE
+         */
+        model.addRow(new Object[]{
+
+                course.getCourseId(),
+
+                course.getCourseName(),
+
+                course.getInstructor(),
+
+                course.getSchedule()
+        });
+
+        clearFields();
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Course added successfully"
+        );
+    }
+
+    /*
+     * ===== UPDATE COURSE =====
+     */
+    private void updateCourse() {
+
+        int row = table.getSelectedRow();
+
+        if(row == -1) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Select a course first"
+            );
+
+            return;
+        }
+
+        model.setValueAt(
+
+                courseNameField.getText(),
+
+                row,
+
+                1
+        );
+
+        model.setValueAt(
+
+                instructorField.getText(),
+
+                row,
+
+                2
+        );
+
+        model.setValueAt(
+
+                scheduleField.getText(),
+
+                row,
+
+                3
+        );
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Course updated"
+        );
+    }
+
+    /*
+     * ===== DELETE COURSE =====
+     */
+    private void deleteCourse() {
+
+        int row = table.getSelectedRow();
+
+        if(row == -1) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Select a course first"
+            );
+
+            return;
+        }
+
+        model.removeRow(row);
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Course deleted"
+        );
+    }
+
+    /*
+     * ===== VALIDATION =====
+     */
+    private boolean validateForm() {
+
+        if(courseIdField.getText()
+                .trim()
+                .isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Course ID required"
+            );
+
+            return false;
+        }
+
+        if(courseNameField.getText()
+                .trim()
+                .isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Course name required"
+            );
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /*
+     * ===== CLEAR FIELDS =====
+     */
+    private void clearFields() {
+
+        courseIdField.setText("");
+
+        courseNameField.setText("");
+
+        instructorField.setText("");
+
+        scheduleField.setText("");
+    }
+
+    /*
+     * ===== LOAD SAVED COURSES =====
+     */
+    private void loadCourses() {
+
+        for(Course course :
+                DataStore.getInstance()
+                        .getCourses()) {
+
+            model.addRow(new Object[]{
+
+                    course.getCourseId(),
+
+                    course.getCourseName(),
+
+                    course.getInstructor(),
+
+                    course.getSchedule()
+            });
+        }
     }
 }

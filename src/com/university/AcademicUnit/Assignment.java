@@ -1,8 +1,9 @@
 package com.university.AcademicUnit;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 
-public class Assignment{
+public class Assignment implements Serializable {
 
 
     // Attributes
@@ -17,7 +18,6 @@ public class Assignment{
     public Assignment(String title, int marks, String deadline) {
 
         try{
-
             if(title == null || title.isEmpty()){
                 throw new Exception("Title cannot be empty");
             }
@@ -25,11 +25,12 @@ public class Assignment{
             if(marks < 0){
                 throw new Exception("Marks cannot be negative");
             }
-
             this.title = title;
             this.marks = marks;
             this.deadline = deadline;
         }
+
+
 
         catch(Exception e){
 

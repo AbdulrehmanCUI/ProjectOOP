@@ -2,9 +2,30 @@ package com.university.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import com.university.data.PersistenceManager;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import com.university.data.PersistenceManager;
+import com.university.data.DataStore;
 
 public class DashboardFrame extends JFrame {
 
+
+
+    private final ScheduledExecutorService autoSaveExecutor = Executors.newSingleThreadScheduledExecutor();
+    private void startAutoSave() {
+
+        autoSaveExecutor.scheduleAtFixedRate(() -> {
+
+            PersistenceManager.save(DataStore.getInstance());
+
+        }, 5, 5, TimeUnit.MINUTES);
+    }
     public DashboardFrame() {
 
         setTitle("Smart Campus Management System");
@@ -56,5 +77,16 @@ public class DashboardFrame extends JFrame {
         });
 
         setVisible(true);
+        addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                PersistenceManager.save(DataStore.getInstance());
+
+                autoSaveExecutor.shutdown();
+            }
+        });
+
     }
 }

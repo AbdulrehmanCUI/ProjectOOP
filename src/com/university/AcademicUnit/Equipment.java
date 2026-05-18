@@ -1,6 +1,8 @@
 package com.university.AcademicUnit;
 
-public class Equipment {
+import java.io.Serializable;
+
+public class Equipment implements Serializable {
 
     // Attributes
     private int equipmentId;

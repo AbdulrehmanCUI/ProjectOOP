@@ -1,71 +1,58 @@
 package com.university.ServiceUnit;
 
 import com.university.Interfaces.Schedulable;
+import com.university.core.ServiceUnit;
 
-public class TransportService implements Schedulable {
+import java.io.Serializable;
 
-        private String route;
-        private String alternativeRoute;
-        private String timing;
-        private int busNo;
+public class TransportService extends ServiceUnit implements Schedulable, Serializable {
 
-        public TransportService(String route, String alternativeRoute,
-                                String timing, int busNo) {
+    private static final long serialVersionUID = 1L;
 
-            this.route = route;
-            this.alternativeRoute = alternativeRoute;
-            this.timing = timing;
-            this.busNo = busNo;
+    private String route;
+    private String alternateRoute;
+    private String timing;
+    private int vehicleCount;
+
+    public TransportService(
+            int entityID,
+            String name,
+            String location,
+            int serviceHours,
+            int staffCount,
+            String route,
+            String alternateRoute,
+            String timing,
+            int vehicleCount) {
+
+        super(entityID, name, location, serviceHours, staffCount);
+
+        this.route = route;
+        this.alternateRoute = alternateRoute;
+        this.timing = timing;
+        this.vehicleCount = vehicleCount;
+    }
+
+    @Override
+    public String generateSchedule() {
+
+        if (timing.contains("8:00")) {
+            route = alternateRoute;
         }
 
-        public String getRoute() {
-            return route;
-        }
+        return "Transport Route: " + route +
+                " | Vehicles: " + vehicleCount;
+    }
 
-        public String getAlternativeRoute() {
-            return alternativeRoute;
-        }
+    @Override
+    public double calculateOperationalCost() {
+        return (serviceHours * 250) +
+                (staffCount * 1000) +
+                (vehicleCount * 500);
+    }
 
-        public String getTiming() {
-            return timing;
-        }
-
-        public int getBusNo() {
-            return busNo;
-        }
-
-        public void setRoute(String route) {
-            this.route = route;
-        }
-
-        public void setAlternativeRoute(String alternativeRoute) {
-            this.alternativeRoute = alternativeRoute;
-        }
-
-        public void setTiming(String timing) {
-            this.timing = timing;
-        }
-
-        public void setBusNo(int busNo) {
-            this.busNo = busNo;
-        }
-
-        @Override
-        public String generateSchedule() {
-
-            if(timing.equals("8:00 AM")) {
-
-                System.out.println("Peak hour detected...");
-                route = alternativeRoute;
-
-                System.out.println("Route updated dynamically");
-            }else{
-                route = route;
-            }
-            return  "Transport Schedule: " + "\n" + "Bus Number: " + busNo + "\nRoute: " + route + "\nTime: " + timing;
-        }
-
-        }
-
-
-
+    @Override
+    public String toString() {
+        return name + " - " + route;
+    }
+}

@@ -1,6 +1,9 @@
 package com.university.Facility;
 
-public class Book {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Book implements Serializable {
 
     // Attributes
     private String title;

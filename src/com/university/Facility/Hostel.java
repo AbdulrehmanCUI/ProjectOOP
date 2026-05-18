@@ -1,6 +1,8 @@
 package com.university.Facility;
 
-public class Hostel {
+import java.io.Serializable;
+
+public class Hostel implements Serializable {
 
     // Attributes
     private int rooms;

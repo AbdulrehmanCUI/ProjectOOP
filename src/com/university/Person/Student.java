@@ -103,5 +103,8 @@ public class Student implements Identifiable, Serializable {
     public String toString() {
         return "Name: " + name + ", ID: " + id + ", Department: " + department;
     }
+
+    public  getStudentId() {
+    }
 }
 
