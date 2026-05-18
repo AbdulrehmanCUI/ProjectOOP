@@ -18,17 +18,11 @@ public class ReportPanel extends JPanel {
 
         report.append("===== UNIVERSITY REPORT ===== ");
 
-                report.append("Total Students: ")
-                        .append(DataStore.getInstance()
-                                .getStudents().size())
-                        .append(" ");
+                report.append("Total Students: ").append(DataStore.getInstance().getStudents().size()).append(" ");
 
-                                report.append("Total Courses: ")
-                                        .append(DataStore.getInstance()
-                                                .getCourses().size())
-                                        .append(" ");
+                report.append("Total Courses: ").append(DataStore.getInstance().getCourses().size()).append(" ");
 
-                                                reportArea.setText(report.toString());
+                reportArea.setText(report.toString());
 
         add(new JScrollPane(reportArea), BorderLayout.CENTER);
     }

@@ -10,23 +10,15 @@ import java.awt.*;
 
 public class CoursePanel extends JPanel {
 
-    /*
-     * FORM FIELDS
-     */
     private JTextField courseIdField;
     private JTextField courseNameField;
     private JTextField instructorField;
     private JTextField scheduleField;
-
-    /*
-     * TABLE
-     */
+   // Table
     private JTable table;
     private DefaultTableModel model;
 
-    /*
-     * BUTTONS
-     */
+   // Button
     private JButton addButton;
     private JButton updateButton;
     private JButton deleteButton;
@@ -34,16 +26,12 @@ public class CoursePanel extends JPanel {
     public CoursePanel() {
 
         setLayout(new BorderLayout(10,10));
-
-        /*
-         * ===== FORM PANEL =====
-         */
+// Form Pannel
         JPanel formPanel = new JPanel(
                 new GridLayout(4,2,10,10)
         );
 
-        formPanel.setBorder(
-                BorderFactory.createTitledBorder(
+        formPanel.setBorder(BorderFactory.createTitledBorder(
                         "Course Information"
                 )
         );
@@ -68,9 +56,7 @@ public class CoursePanel extends JPanel {
         formPanel.add(new JLabel("Schedule"));
         formPanel.add(scheduleField);
 
-        /*
-         * ===== BUTTON PANEL =====
-         */
+        // Button pannel
         JPanel buttonPanel = new JPanel();
 
         addButton = new JButton("Add");
@@ -84,44 +70,30 @@ public class CoursePanel extends JPanel {
         buttonPanel.add(updateButton);
 
         buttonPanel.add(deleteButton);
-
-        /*
-         * ===== TABLE =====
-         */
+      //   Table
         model = new DefaultTableModel(
 
-                new String[]{
-                        "Course ID",
-                        "Course Name",
-                        "Instructor",
-                        "Schedule"
+                new String[]{"Course ID", "Course Name", "Instructor", "Schedule"
                 },
 
-                0
-        );
+                0);
 
         table = new JTable(model);
 
         JScrollPane scrollPane =
                 new JScrollPane(table);
 
-        /*
-         * ===== ADD COMPONENTS =====
-         */
+
         add(formPanel, BorderLayout.NORTH);
 
         add(scrollPane, BorderLayout.CENTER);
 
         add(buttonPanel, BorderLayout.SOUTH);
 
-        /*
-         * ===== LOAD SAVED DATA =====
-         */
+        // Load saved data
         loadCourses();
 
-        /*
-         * ===== BUTTON ACTIONS =====
-         */
+        // Button actions
         addButton.addActionListener(
                 e -> addCourse()
         );
@@ -134,13 +106,7 @@ public class CoursePanel extends JPanel {
                 e -> deleteCourse()
         );
 
-        /*
-         * ===== ROLE-BASED ACCESS =====
-         */
-
-        /*
-         * STUDENTS CAN ONLY VIEW
-         */
+        // Role based access
         if(SessionManager.isStudent()) {
 
             addButton.setEnabled(false);
@@ -150,59 +116,38 @@ public class CoursePanel extends JPanel {
             deleteButton.setEnabled(false);
         }
 
-        /*
-         * TEACHERS CANNOT DELETE
-         */
+        // Teacher cannot delete
         if(SessionManager.isTeacher()) {
 
             deleteButton.setEnabled(false);
         }
     }
 
-    /*
-     * ===== ADD COURSE =====
-     */
+    // Add course
     private void addCourse() {
 
         if(!validateForm()) {
             return;
         }
 
-        int courseId =
-                Integer.parseInt(
-                        courseIdField.getText()
+        int courseId = Integer.parseInt(courseIdField.getText()
                 );
 
-        String courseName =
-                courseNameField.getText();
+        String courseName = courseNameField.getText();
 
-        String instructor =
-                instructorField.getText();
+        String instructor = instructorField.getText();
 
-        String schedule =
-                scheduleField.getText();
+        String schedule = scheduleField.getText();
 
-        /*
-         * CREATE COURSE OBJECT
-         */
-        Course course = new Course(courseId,
 
-                courseName,
-
-                instructor,
-
-                schedule
+        Course course = new Course(courseId, courseName, instructor, schedule
         );
 
-        /*
-         * ADD TO DATASTORE
-         */
+        // Add to database
         DataStore.getInstance()
                 .addCourse(course);
 
-        /*
-         * ADD TO TABLE
-         */
+       // Table
         model.addRow(new Object[]{
 
                 course.getCourseId(),
@@ -222,9 +167,7 @@ public class CoursePanel extends JPanel {
         );
     }
 
-    /*
-     * ===== UPDATE COURSE =====
-     */
+    // Update course
     private void updateCourse() {
 
         int row = table.getSelectedRow();
@@ -239,27 +182,21 @@ public class CoursePanel extends JPanel {
             return;
         }
 
-        model.setValueAt(
-
-                courseNameField.getText(),
+        model.setValueAt(courseNameField.getText(),
 
                 row,
 
                 1
         );
 
-        model.setValueAt(
-
-                instructorField.getText(),
+        model.setValueAt(instructorField.getText(),
 
                 row,
 
                 2
         );
 
-        model.setValueAt(
-
-                scheduleField.getText(),
+        model.setValueAt(scheduleField.getText(),
 
                 row,
 
@@ -272,9 +209,7 @@ public class CoursePanel extends JPanel {
         );
     }
 
-    /*
-     * ===== DELETE COURSE =====
-     */
+  // Delete course
     private void deleteCourse() {
 
         int row = table.getSelectedRow();
@@ -297,14 +232,10 @@ public class CoursePanel extends JPanel {
         );
     }
 
-    /*
-     * ===== VALIDATION =====
-     */
+  // Validation
     private boolean validateForm() {
 
-        if(courseIdField.getText()
-                .trim()
-                .isEmpty()) {
+        if(courseIdField.getText().trim().isEmpty()) {
 
             JOptionPane.showMessageDialog(
                     this,
@@ -314,9 +245,7 @@ public class CoursePanel extends JPanel {
             return false;
         }
 
-        if(courseNameField.getText()
-                .trim()
-                .isEmpty()) {
+        if(courseNameField.getText().trim().isEmpty()) {
 
             JOptionPane.showMessageDialog(
                     this,
@@ -329,9 +258,7 @@ public class CoursePanel extends JPanel {
         return true;
     }
 
-    /*
-     * ===== CLEAR FIELDS =====
-     */
+    // Clear fields
     private void clearFields() {
 
         courseIdField.setText("");
@@ -343,14 +270,10 @@ public class CoursePanel extends JPanel {
         scheduleField.setText("");
     }
 
-    /*
-     * ===== LOAD SAVED COURSES =====
-     */
+    // Load saved courses
     private void loadCourses() {
 
-        for(Course course :
-                DataStore.getInstance()
-                        .getCourses()) {
+        for(Course course : DataStore.getInstance().getCourses()) {
 
             model.addRow(new Object[]{
 

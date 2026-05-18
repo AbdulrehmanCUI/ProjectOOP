@@ -14,13 +14,21 @@ public class CampusRepository<T extends Identifiable> implements Repository<T>, 
     // Add method
     @Override
     public void add(T obj) {
+
         try{
-            list.add(obj);
+
+            if(obj == null){
+                throw new IllegalArgumentException("Item cannot be null");
+            }
+
+            if(!list.contains(obj)){
+                list.add(obj);
+            }
+
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
-
 
     // Delete
     @Override

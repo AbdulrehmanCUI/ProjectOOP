@@ -47,7 +47,24 @@ public class CampusMapPanel extends JPanel {
                 btn.setBounds(x, y, 170, 80);
             }
         });
-
+        
         return btn;
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+
+        g.setColor(Color.BLUE);
+        g.fillRect(50,50,150,100);
+        g.drawString("Library",100,110);
+
+        g.setColor(Color.GREEN);
+        g.fillRect(250,50,150,100);
+        g.drawString("Cafeteria",300,110);
+
+        g.setColor(Color.ORANGE);
+        g.fillRect(450,50,150,100);
+        g.drawString("Hostel",520,110);
     }
 }

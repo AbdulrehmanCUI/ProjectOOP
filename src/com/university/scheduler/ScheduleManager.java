@@ -12,14 +12,10 @@ public class ScheduleManager {
 
         for(Course course : existingCourses) {
 
-            boolean sameClassroom =
-                    course.getClassroom().equals(
-                            newCourse.getClassroom()
+            boolean sameClassroom = course.getClassroom().equals(newCourse.getClassroom()
                     );
 
-            boolean sameTime =
-                    course.getSchedule().equals(
-                            newCourse.getSchedule()
+            boolean sameTime = course.getSchedule().equals(newCourse.getSchedule()
                     );
 
             if(sameClassroom && sameTime) {

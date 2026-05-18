@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import javax.swing.table.TableRowSorter;
+import javax.swing.table.DefaultTableModel;
 
 public class StudentPanel extends JPanel {
 
@@ -53,9 +55,11 @@ public class StudentPanel extends JPanel {
         );
 
         table = new JTable(model);
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
 
-        TableRowSorter<DefaultTableModel> sorter =
-                new TableRowSorter<>(model);
+        table.setRowSorter(sorter);
+
+        sorter = new TableRowSorter<>(model);
 
         table.setRowSorter(sorter);
 
@@ -76,10 +80,7 @@ public class StudentPanel extends JPanel {
             return;
         }
 
-        Student student = new Student(
-                Integer.parseInt(idField.getText()),
-                nameField.getText(),
-                departmentField.getText()
+        Student student = new Student(Integer.parseInt(idField.getText()), nameField.getText(), departmentField.getText()
         );
 
         DataStore.getInstance().getStudents().add(student);
