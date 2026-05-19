@@ -51,24 +51,22 @@ public class DataStore implements Serializable {
         return instance;
     }
 
-    /*
-     * STUDENT METHODS
-     */
+
 
     public void addStudent(Student student) {
-
-        if(student == null) {
-
-            throw new IllegalArgumentException(
-                    "Student cannot be null"
-            );
+        if (student == null) {
+            throw new IllegalArgumentException("Student cannot be null");
         }
 
-        if(!students.contains(student)) {
-
-            students.add(student);
+        for (Student s : students) {
+            if (s.getID() == student.getID()) {
+                throw new IllegalArgumentException("Duplicate ID: " + student.getID());
+            }
         }
+        students.add(student);
+
     }
+
 
     public void removeStudent(Student student) {
 

@@ -42,12 +42,15 @@ public class StudentPanel extends JPanel {
         JButton addButton = new JButton("Add Student");
         JButton updateButton = new JButton("Update");
         JButton deleteButton = new JButton("Delete");
+        JButton resetButton = new JButton("Reset");
 
         JPanel buttonPanel = new JPanel();
 
+    buttonPanel.add(resetButton);
         buttonPanel.add(addButton);
         buttonPanel.add(updateButton);
         buttonPanel.add(deleteButton);
+
 
         model = new DefaultTableModel(
                 new String[]{"ID", "Name", "Department"},
@@ -79,16 +82,19 @@ public class StudentPanel extends JPanel {
         if(!validateForm()) {
             return;
         }
+        Student student = new Student();
+        for (Student s : students) {
+            if (s.getID() == student.getID()) {
+                throw new IllegalArgumentException("Duplicate ID: " + student.getID());
+            }
+        }
 
         Student student = new Student(Integer.parseInt(idField.getText()), nameField.getText(), departmentField.getText()
         );
 
         DataStore.getInstance().getStudents().add(student);
 
-        model.addRow(new Object[]{
-                student.getId(),
-                student.getName(),
-                student.getDepartment()
+        model.addRow(new Object[]{student.getId(), student.getName(), student.getDepartment()
         });
 
         clearFields();

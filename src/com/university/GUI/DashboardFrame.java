@@ -18,13 +18,11 @@ public class DashboardFrame extends JFrame {
 
     private final ScheduledExecutorService autoSaveExecutor = Executors.newSingleThreadScheduledExecutor();
     private void startAutoSave() {
-
         autoSaveExecutor.scheduleAtFixedRate(() -> {
-
             PersistenceManager.save(DataStore.getInstance());
-
-        }, 5, 5, TimeUnit.MINUTES);
+            }, 5, 5, TimeUnit.MINUTES);
     }
+
     public DashboardFrame() {
 
         setTitle("Smart Campus Management System");
@@ -37,9 +35,7 @@ public class DashboardFrame extends JFrame {
         topPanel.setBackground(new Color(24, 44, 97));
         topPanel.setPreferredSize(new Dimension(100, 80));
 
-        JLabel title = new JLabel(
-                "Smart University Campus Management System"
-        );
+        JLabel title = new JLabel("Smart University Campus Management System");
 
         title.setForeground(Color.WHITE);
         title.setFont(new Font("Arial", Font.BOLD, 22));
@@ -56,8 +52,8 @@ public class DashboardFrame extends JFrame {
         rightPanel.add(saveBtn);
         rightPanel.add(logoutBtn);
 
-        topPanel.add(rightPanel, BorderLayout.EAST);
 
+        topPanel.add(rightPanel, BorderLayout.EAST);
         add(topPanel, BorderLayout.NORTH);
 
         JTabbedPane tabs = new JTabbedPane();
@@ -73,6 +69,11 @@ public class DashboardFrame extends JFrame {
         logoutBtn.addActionListener(e -> {
             new LoginFrame();
             dispose();
+        });
+
+        saveBtn.addActionListener(e -> {
+            PersistenceManager.save(DataStore.getInstance());
+            JOptionPane.showMessageDialog(this, "Data saved successfully!", "Save", JOptionPane.INFORMATION_MESSAGE);
         });
 
         setVisible(true);

@@ -105,42 +105,23 @@ public class Course implements Schedulable, Serializable {
     /*
      * CRUD CONSTRUCTOR
      */
-    public Course(
-            int courseId,
-            String courseName,
-            String instructor,
-            String schedule) {
+    public Course(int courseId, String courseName, String instructor, String schedule) {
 
-        this.courseCode =
-                String.valueOf(courseId);
+        this.courseCode = String.valueOf(courseId);
 
-        this.courseName =
-                courseName;
+        this.courseName = courseName;
 
-        this.teacherName =
-                instructor;
+        this.teacherName = instructor;
+        if(schedule != null && schedule.contains("-")) {
 
-        /*
-         * EXTRACT DAY/TIME
-         */
-        if(schedule != null &&
-                schedule.contains("-")) {
-
-            String[] parts =
-                    schedule.split("-");
+            String[] parts = schedule.split("-");
 
             if(parts.length == 2) {
-
                 this.day = parts[0];
-
                 this.time = parts[1];
             }
         }
     }
-
-    /*
-     * GETTERS
-     */
 
     public String getCourseCode() {
         return courseCode;
@@ -170,17 +151,12 @@ public class Course implements Schedulable, Serializable {
         return time;
     }
 
-    /*
-     * SAFE COLLECTION GETTER
-     */
     public List<Student> getStudents() {
 
         return students;
     }
 
-    /*
-     * REQUIRED FOR CoursePanel
-     */
+
 
     public int getCourseId() {
 
@@ -373,21 +349,18 @@ public class Course implements Schedulable, Serializable {
 
         try {
 
-            if(teacherName == null ||
-                    day == null ||
-                    time == null) {
-
+            if(teacherName == null || day == null || time == null) {
                 throw new Exception(
                         "Schedule data missing"
                 );
             }
-
         }
-
         catch(Exception e) {
-
             return e.getMessage();
         }
+
+
+
 
         return "Course: " + courseName +
                 "\nTeacher: " + teacherName +
@@ -396,42 +369,26 @@ public class Course implements Schedulable, Serializable {
                 "\nStudents: " + students.size();
     }
 
-    /*
-     * CONFLICT DETECTION
-     */
-
-    public boolean conflictsWith(
-            Course other) {
+    public boolean conflictsWith(Course other) {
 
         if(other == null) {
-
             return false;
         }
 
-        if(this.classroom == null ||
-                other.classroom == null) {
 
+        if(this.classroom == null || other.classroom == null) {
             return false;
         }
 
-        boolean sameRoom =
-                this.classroom.equals(
-                        other.classroom
-                );
 
-        boolean sameDay =
-                this.day.equals(
-                        other.day
-                );
+        boolean sameRoom = this.classroom.equals(other.classroom);
+
+        boolean sameDay = this.day.equals(other.day);
 
         boolean sameTime =
-                this.time.equals(
-                        other.time
-                );
+                this.time.equals(other.time);
 
-        return sameRoom &&
-                sameDay &&
-                sameTime;
+        return sameRoom && sameDay && sameTime;
     }
 
     /*

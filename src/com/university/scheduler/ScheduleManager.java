@@ -12,17 +12,13 @@ public class ScheduleManager {
 
         for(Course course : existingCourses) {
 
-            boolean sameClassroom = course.getClassroom().equals(newCourse.getClassroom()
-                    );
-
-            boolean sameTime = course.getSchedule().equals(newCourse.getSchedule()
-                    );
+            boolean sameClassroom = course.getClassroom().equals(newCourse.getClassroom());
+            boolean sameTime = course.getSchedule().equals(newCourse.getSchedule());
 
             if(sameClassroom && sameTime) {
                 return true;
             }
         }
-
         return false;
     }
 }

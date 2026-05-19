@@ -59,8 +59,6 @@ abstract class CampusEntity implements Identifiable, Serializable {
         return location;
     }
 
-    // ✅ Setters with exception handling
-
     public void setEntityID(int entityID) {
         try {
             if (entityID <= 0) {

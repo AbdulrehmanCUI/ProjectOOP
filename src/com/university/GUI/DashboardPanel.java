@@ -17,112 +17,56 @@ public class DashboardPanel extends JPanel {
     private static JLabel facilityValue;
     private static JLabel routeValue;
 
-    public DashboardPanel() {
 
+    public DashboardPanel() {
         setLayout(new BorderLayout());
 
         setBackground(new Color(241, 245, 249));
 
-        // TITLE
-        JLabel heading = new JLabel(
-                "UNIVERSITY DASHBOARD",
-                SwingConstants.CENTER
-        );
+        JLabel heading = new JLabel("UNIVERSITY DASHBOARD", SwingConstants.CENTER);
 
-        heading.setFont(
-                new Font("Arial", Font.BOLD, 34)
-        );
+        heading.setFont(new Font("Arial", Font.BOLD, 34));
 
         add(heading, BorderLayout.NORTH);
 
-        // CARDS PANEL
-        JPanel cards = new JPanel(
-                new GridLayout(2, 2, 30, 30)
-        );
 
-        cards.setBorder(
-                BorderFactory.createEmptyBorder(
-                        50,
-                        50,
-                        50,
-                        50
-                )
-        );
+        JPanel cards = new JPanel(new GridLayout(2, 2, 30, 30));
 
-        // VALUE LABELS
-        studentValue = new JLabel(
-                String.valueOf(totalStudents),
-                SwingConstants.CENTER
-        );
 
-        courseValue = new JLabel(
-                String.valueOf(totalCourses),
-                SwingConstants.CENTER
-        );
+        cards.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
-        facilityValue = new JLabel(
-                String.valueOf(totalFacilities),
-                SwingConstants.CENTER
-        );
+        studentValue = new JLabel(String.valueOf(totalStudents), SwingConstants.CENTER);
 
-        routeValue = new JLabel(
-                String.valueOf(totalRoutes),
-                SwingConstants.CENTER
-        );
+        courseValue = new JLabel(String.valueOf(totalCourses), SwingConstants.CENTER);
 
-        cards.add(createCard(
-                "Students",
-                studentValue
-        ));
+        facilityValue = new JLabel(String.valueOf(totalFacilities), SwingConstants.CENTER);
 
-        cards.add(createCard(
-                "Courses",
-                courseValue
-        ));
+        routeValue = new JLabel(String.valueOf(totalRoutes), SwingConstants.CENTER);
 
-        cards.add(createCard(
-                "Facilities",
-                facilityValue
-        ));
+        cards.add(createCard("Students", studentValue));
 
-        cards.add(createCard(
-                "Transport Routes",
-                routeValue
-        ));
+        cards.add(createCard("Courses", courseValue));
+
+        cards.add(createCard("Facilities", facilityValue));
+
+        cards.add(createCard("Transport Routes", routeValue));
 
         add(cards, BorderLayout.CENTER);
     }
 
-    // CREATE CARD
-    private JPanel createCard(
-            String title,
-            JLabel valueLabel
-    ) {
+    private JPanel createCard(String title, JLabel valueLabel) {
 
-        JPanel panel = new JPanel(
-                new BorderLayout()
-        );
+        JPanel panel = new JPanel(new BorderLayout());
 
         panel.setBackground(Color.WHITE);
 
-        panel.setBorder(
-                BorderFactory.createLineBorder(
-                        Color.LIGHT_GRAY
-                )
-        );
+        panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
-        JLabel titleLabel = new JLabel(
-                title,
-                SwingConstants.CENTER
-        );
+        JLabel titleLabel = new JLabel(title, SwingConstants.CENTER);
 
-        titleLabel.setFont(
-                new Font("Arial", Font.BOLD, 24)
-        );
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
-        valueLabel.setFont(
-                new Font("Arial", Font.BOLD, 42)
-        );
+        valueLabel.setFont(new Font("Arial", Font.BOLD, 42));
 
         panel.add(titleLabel, BorderLayout.NORTH);
 
@@ -131,23 +75,14 @@ public class DashboardPanel extends JPanel {
         return panel;
     }
 
-    // REFRESH DASHBOARD
     public static void refreshDashboard() {
 
-        studentValue.setText(
-                String.valueOf(totalStudents)
-        );
+        studentValue.setText(String.valueOf(totalStudents));
 
-        courseValue.setText(
-                String.valueOf(totalCourses)
-        );
+        courseValue.setText(String.valueOf(totalCourses));
 
-        facilityValue.setText(
-                String.valueOf(totalFacilities)
-        );
+        facilityValue.setText(String.valueOf(totalFacilities));
 
-        routeValue.setText(
-                String.valueOf(totalRoutes)
-        );
+        routeValue.setText(String.valueOf(totalRoutes));
     }
 }

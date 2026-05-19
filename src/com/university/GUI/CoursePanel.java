@@ -171,9 +171,7 @@ public class CoursePanel extends JPanel {
     private void updateCourse() {
 
         int row = table.getSelectedRow();
-
         if(row == -1) {
-
             JOptionPane.showMessageDialog(
                     this,
                     "Select a course first"
@@ -181,20 +179,9 @@ public class CoursePanel extends JPanel {
 
             return;
         }
+        model.setValueAt(courseNameField.getText(),row, 1);
 
-        model.setValueAt(courseNameField.getText(),
-
-                row,
-
-                1
-        );
-
-        model.setValueAt(instructorField.getText(),
-
-                row,
-
-                2
-        );
+        model.setValueAt(instructorField.getText(), row, 2);
 
         model.setValueAt(scheduleField.getText(),
 

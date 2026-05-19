@@ -176,25 +176,25 @@ public class Department extends AcademicUnit implements Reportable, Serializable
             classroom.markUnavailable();
 
             for (Course course : courses) {
-
                 if (course.getClassroom() == classroom) {
-
                     System.out.println("Rescheduling: " + course.getCourseName());
-
                     String result = course.generateSchedule();
-
                     if (result.equals("No Slot Available")) {
-
                         System.out.println("WARNING: Could not reschedule " + course.getCourseName());
                     }
                 }
             }
-
         }
-
         catch(Exception e){
 
             System.out.println(e.getMessage());
         }
     }
 }
+
+
+
+
+
+
+

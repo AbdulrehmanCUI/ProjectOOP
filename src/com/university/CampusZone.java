@@ -98,7 +98,7 @@ public class CampusZone implements Serializable {
     }
 
 
-    public ArrayList<Facility> getFacilities() {
+    public ArrayList<Facility> getFacilities(){
         try{
             return facilities;
         }catch (Exception e){
